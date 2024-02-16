@@ -98,4 +98,26 @@ object IssuesUtils {
         Implementation(RulesDetectors::class.java, Scope.JAVA_FILE_SCOPE)
     )
 
+    const val StateFlowNameIssueText = "variables of type StateFlow must end with StateFlow"
+    val StateFlowNameIssue = Issue.create(
+        "StateFlowNameRule",
+        StateFlowNameIssueText,
+        StateFlowNameIssueText,
+        Category.CORRECTNESS,
+        6,
+        Severity.WARNING,
+        Implementation(RulesDetectors::class.java, Scope.JAVA_FILE_SCOPE)
+    )
+
+    const val StateNameIssueText = "variables of type State must end with State"
+    val StateNameIssue = Issue.create(
+        "StateNameRule",
+        StateNameIssueText,
+        StateNameIssueText,
+        Category.CORRECTNESS,
+        6,
+        Severity.WARNING,
+        Implementation(RulesDetectors::class.java, Scope.JAVA_FILE_SCOPE)
+    )
+
 }

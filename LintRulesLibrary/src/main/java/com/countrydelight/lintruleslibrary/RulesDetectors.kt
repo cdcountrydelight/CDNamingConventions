@@ -17,15 +17,20 @@ import com.countrydelight.lintruleslibrary.utils.IssuesUtils.InterfaceImplementa
 import com.countrydelight.lintruleslibrary.utils.IssuesUtils.InterfaceImplementationNameIssueText
 import com.countrydelight.lintruleslibrary.utils.IssuesUtils.InterfaceNameIssue
 import com.countrydelight.lintruleslibrary.utils.IssuesUtils.InterfaceNameIssueText
+import com.countrydelight.lintruleslibrary.utils.IssuesUtils.StateFlowNameIssue
+import com.countrydelight.lintruleslibrary.utils.IssuesUtils.StateFlowNameIssueText
+import com.countrydelight.lintruleslibrary.utils.IssuesUtils.StateNameIssue
+import com.countrydelight.lintruleslibrary.utils.IssuesUtils.StateNameIssueText
 import com.countrydelight.lintruleslibrary.utils.IssuesUtils.ViewModelNameIssue
 import com.countrydelight.lintruleslibrary.utils.IssuesUtils.ViewModelNameIssueText
 import org.jetbrains.uast.UClass
 import org.jetbrains.uast.UElement
+import org.jetbrains.uast.UVariable
 
 class RulesDetectors : Detector(), Detector.UastScanner {
 
     override fun getApplicableUastTypes(): List<Class<out UElement>> {
-        return listOf(UClass::class.java)
+        return listOf(UClass::class.java, UVariable::class.java)
     }
 
     override fun createUastHandler(context: JavaContext): UElementHandler {
@@ -58,6 +63,33 @@ class RulesDetectors : Detector(), Detector.UastScanner {
                     }
                 }
             }
+
+            override fun visitVariable(node: UVariable) {
+                val variableName = node.name
+                val variableType = node.type
+                if (!node.text.contains("fun") && !node.isStatic) {
+                    if (variableType.canonicalText.contains("StateFlow") && node.isPhysical) {
+                        if (variableName?.endsWith("StateFlow") == false) {
+                            context.report(
+                                StateFlowNameIssue,
+                                node as UElement,
+                                context.getLocation(node as UElement),
+                                StateFlowNameIssueText
+                            )
+                        }
+                    } else if (variableType.canonicalText.contains("State") && node.isPhysical) {
+                        if (variableName?.endsWith("State") == false) {
+                            context.report(
+                                StateNameIssue,
+                                node as UElement,
+                                context.getLocation(node as UElement),
+                                StateNameIssueText
+                            )
+                        }
+                    }
+                }
+            }
+
         }
     }
 

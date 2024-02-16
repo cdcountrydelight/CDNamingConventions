@@ -14,7 +14,9 @@ class LintRulesIssueRegistry : IssueRegistry() {
             IssuesUtils.BroadcastReceiverNameIssue,
             IssuesUtils.ViewModelNameIssue,
             IssuesUtils.EnumNameIssue,
-            IssuesUtils.InterfaceImplementationNameIssue
+            IssuesUtils.InterfaceImplementationNameIssue,
+            IssuesUtils.StateNameIssue,
+            IssuesUtils.StateFlowNameIssue
         )
 
 }
