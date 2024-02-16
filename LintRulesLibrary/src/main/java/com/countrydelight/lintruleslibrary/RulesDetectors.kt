@@ -9,6 +9,8 @@ import com.countrydelight.lintruleslibrary.utils.IssuesUtils.ApplicationNameIssu
 import com.countrydelight.lintruleslibrary.utils.IssuesUtils.ApplicationNameIssueText
 import com.countrydelight.lintruleslibrary.utils.IssuesUtils.BroadcastReceiverNameIssue
 import com.countrydelight.lintruleslibrary.utils.IssuesUtils.BroadcastReceiverNameIssueText
+import com.countrydelight.lintruleslibrary.utils.IssuesUtils.DaoNameIssue
+import com.countrydelight.lintruleslibrary.utils.IssuesUtils.DaoNameIssueText
 import com.countrydelight.lintruleslibrary.utils.IssuesUtils.DatabaseNameIssue
 import com.countrydelight.lintruleslibrary.utils.IssuesUtils.DatabaseNameIssueText
 import com.countrydelight.lintruleslibrary.utils.IssuesUtils.EnumNameIssue
@@ -22,6 +24,7 @@ import com.countrydelight.lintruleslibrary.utils.IssuesUtils.InterfaceNameIssueT
 import com.countrydelight.lintruleslibrary.utils.IssuesUtils.ListNameIssue
 import com.countrydelight.lintruleslibrary.utils.IssuesUtils.ListNameIssueText
 import com.countrydelight.lintruleslibrary.utils.IssuesUtils.PackageNameIssue
+import com.countrydelight.lintruleslibrary.utils.IssuesUtils.PackageNameIssueText
 import com.countrydelight.lintruleslibrary.utils.IssuesUtils.StateFlowNameIssue
 import com.countrydelight.lintruleslibrary.utils.IssuesUtils.StateFlowNameIssueText
 import com.countrydelight.lintruleslibrary.utils.IssuesUtils.StateNameIssue
@@ -36,7 +39,11 @@ import org.jetbrains.uast.UVariable
 class RulesDetectors : Detector(), Detector.UastScanner {
 
     override fun getApplicableUastTypes(): List<Class<out UElement>> {
-        return listOf(UClass::class.java, UVariable::class.java, UFile::class.java)
+        return listOf(
+            UClass::class.java,
+            UVariable::class.java,
+            UFile::class.java
+        )
     }
 
     override fun createUastHandler(context: JavaContext): UElementHandler {
@@ -89,8 +96,6 @@ class RulesDetectors : Detector(), Detector.UastScanner {
                     }
                 }
             }
-
-
         }
     }
 
@@ -102,7 +107,7 @@ class RulesDetectors : Detector(), Detector.UastScanner {
                 PackageNameIssue,
                 node,
                 context.getLocation(node),
-                packageName
+                PackageNameIssueText
             )
         }
     }
@@ -247,8 +252,20 @@ class RulesDetectors : Detector(), Detector.UastScanner {
 
     private fun handleInterfaceNameRule(node: UClass, context: JavaContext) {
         val className = node.name
+        val isDao = node.annotations.any { it.text.contains("Dao") }
+        if (className == null) return
+        if (isDao) {
+            if (!className.endsWith("Dao")) {
+                context.report(
+                    DaoNameIssue,
+                    node,
+                    context.getLocation(node as UElement),
+                    DaoNameIssueText
+                )
+            }
+        }
         //because annotation are internally treated as interface class
-        if (className != null && className.first() != 'I' && !node.text.contains("annotation")) {
+        else if (className.first() != 'I' && !node.text.contains("annotation")) {
             context.report(
                 InterfaceNameIssue,
                 node,

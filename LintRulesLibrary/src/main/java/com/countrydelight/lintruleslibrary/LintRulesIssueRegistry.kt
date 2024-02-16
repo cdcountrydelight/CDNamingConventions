@@ -19,7 +19,8 @@ class LintRulesIssueRegistry : IssueRegistry() {
             IssuesUtils.StateFlowNameIssue,
             IssuesUtils.ListNameIssue,
             IssuesUtils.PackageNameIssue,
-            IssuesUtils.DatabaseNameIssue
+            IssuesUtils.DatabaseNameIssue,
+            IssuesUtils.DaoNameIssue
         )
 
 }
