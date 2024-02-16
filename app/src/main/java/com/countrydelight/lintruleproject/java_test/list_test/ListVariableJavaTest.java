@@ -12,5 +12,6 @@ public class ListVariableJavaTest {
 
     List<String> rightList;
 
+    // not added for mutable list , because it is not available in java
 
 }
