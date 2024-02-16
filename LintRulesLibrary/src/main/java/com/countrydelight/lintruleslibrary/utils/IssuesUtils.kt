@@ -131,4 +131,16 @@ object IssuesUtils {
         Implementation(RulesDetectors::class.java, Scope.JAVA_FILE_SCOPE)
     )
 
+    const val PackageNameIssueText =
+        "Package name must be in snake case format for eg:- user_details"
+    val PackageNameIssue = Issue.create(
+        "PackageNameRule",
+        PackageNameIssueText,
+        PackageNameIssueText,
+        Category.CORRECTNESS,
+        6,
+        Severity.ERROR,
+        Implementation(RulesDetectors::class.java, Scope.JAVA_FILE_SCOPE)
+    )
+
 }

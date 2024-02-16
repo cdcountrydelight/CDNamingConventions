@@ -19,6 +19,7 @@ import com.countrydelight.lintruleslibrary.utils.IssuesUtils.InterfaceNameIssue
 import com.countrydelight.lintruleslibrary.utils.IssuesUtils.InterfaceNameIssueText
 import com.countrydelight.lintruleslibrary.utils.IssuesUtils.ListNameIssue
 import com.countrydelight.lintruleslibrary.utils.IssuesUtils.ListNameIssueText
+import com.countrydelight.lintruleslibrary.utils.IssuesUtils.PackageNameIssue
 import com.countrydelight.lintruleslibrary.utils.IssuesUtils.StateFlowNameIssue
 import com.countrydelight.lintruleslibrary.utils.IssuesUtils.StateFlowNameIssueText
 import com.countrydelight.lintruleslibrary.utils.IssuesUtils.StateNameIssue
@@ -27,16 +28,22 @@ import com.countrydelight.lintruleslibrary.utils.IssuesUtils.ViewModelNameIssue
 import com.countrydelight.lintruleslibrary.utils.IssuesUtils.ViewModelNameIssueText
 import org.jetbrains.uast.UClass
 import org.jetbrains.uast.UElement
+import org.jetbrains.uast.UFile
 import org.jetbrains.uast.UVariable
 
 class RulesDetectors : Detector(), Detector.UastScanner {
 
     override fun getApplicableUastTypes(): List<Class<out UElement>> {
-        return listOf(UClass::class.java, UVariable::class.java)
+        return listOf(UClass::class.java, UVariable::class.java, UFile::class.java)
     }
 
     override fun createUastHandler(context: JavaContext): UElementHandler {
         return object : UElementHandler() {
+
+            override fun visitFile(node: UFile) {
+                handlePackageNameRule(node, context)
+            }
+
             override fun visitClass(node: UClass) {
                 val className = node.name
                 if (className != null) {
@@ -79,7 +86,25 @@ class RulesDetectors : Detector(), Detector.UastScanner {
                 }
             }
 
+
         }
+    }
+
+
+    private fun handlePackageNameRule(node: UFile, context: JavaContext) {
+        val packageName = node.packageName.substringAfterLast(".")
+        if (!isValidSnakeCase(packageName)) {
+            context.report(
+                PackageNameIssue,
+                node,
+                context.getLocation(node),
+                packageName
+            )
+        }
+    }
+
+    private fun isValidSnakeCase(name: String): Boolean {
+        return name.matches(Regex("^[a-z][a-z0-9_]*$"))
     }
 
 
