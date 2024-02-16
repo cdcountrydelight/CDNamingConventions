@@ -25,6 +25,8 @@ import com.countrydelight.lintruleslibrary.utils.IssuesUtils.InterfaceNameIssue
 import com.countrydelight.lintruleslibrary.utils.IssuesUtils.InterfaceNameIssueText
 import com.countrydelight.lintruleslibrary.utils.IssuesUtils.ListNameIssue
 import com.countrydelight.lintruleslibrary.utils.IssuesUtils.ListNameIssueText
+import com.countrydelight.lintruleslibrary.utils.IssuesUtils.MapNameIssue
+import com.countrydelight.lintruleslibrary.utils.IssuesUtils.MapNameIssueText
 import com.countrydelight.lintruleslibrary.utils.IssuesUtils.PackageNameIssue
 import com.countrydelight.lintruleslibrary.utils.IssuesUtils.PackageNameIssueText
 import com.countrydelight.lintruleslibrary.utils.IssuesUtils.StateFlowNameIssue
@@ -97,6 +99,8 @@ class RulesDetectors : Detector(), Detector.UastScanner {
                         handleStateNameRule(node, context)
                     } else if (variableType.canonicalText.contains("List") && node.isPhysical) {
                         handleListNameRule(node, context)
+                    } else if (variableType.canonicalText.contains("Map") && node.isPhysical) {
+                        handleMapNameRule(node, context)
                     }
                 }
             }
@@ -132,6 +136,17 @@ class RulesDetectors : Detector(), Detector.UastScanner {
         return name.matches(Regex("^[a-z][a-z0-9_]*$"))
     }
 
+
+    private fun handleMapNameRule(node: UVariable, context: JavaContext) {
+        if (node.name?.endsWith("Map") == false) {
+            context.report(
+                MapNameIssue,
+                node as UElement,
+                context.getLocation(node as UElement),
+                MapNameIssueText
+            )
+        }
+    }
 
     private fun handleListNameRule(node: UVariable, context: JavaContext) {
         if (node.name?.endsWith("List") == false) {

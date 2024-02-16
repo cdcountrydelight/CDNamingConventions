@@ -21,7 +21,8 @@ class LintRulesIssueRegistry : IssueRegistry() {
             IssuesUtils.PackageNameIssue,
             IssuesUtils.DatabaseNameIssue,
             IssuesUtils.DaoNameIssue,
-            IssuesUtils.EntityNameIssue
+            IssuesUtils.EntityNameIssue,
+            IssuesUtils.MapNameIssue
         )
 
 }

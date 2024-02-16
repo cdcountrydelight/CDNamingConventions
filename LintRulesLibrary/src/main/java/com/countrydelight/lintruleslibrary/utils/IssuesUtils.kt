@@ -142,6 +142,18 @@ object IssuesUtils {
         Implementation(RulesDetectors::class.java, Scope.JAVA_FILE_SCOPE)
     )
 
+    const val MapNameIssueText = "variables of type Map must end with Map"
+    val MapNameIssue = Issue.create(
+        "MapNameRule",
+        MapNameIssueText,
+        MapNameIssueText,
+        Category.CORRECTNESS,
+        6,
+        Severity.WARNING,
+        Implementation(RulesDetectors::class.java, Scope.JAVA_FILE_SCOPE)
+    )
+
+
     const val DaoNameIssueText =
         "Dao must end with Dao"
     val DaoNameIssue = Issue.create(
