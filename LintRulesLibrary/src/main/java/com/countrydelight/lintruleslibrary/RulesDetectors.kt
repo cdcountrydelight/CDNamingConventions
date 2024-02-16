@@ -9,6 +9,8 @@ import com.countrydelight.lintruleslibrary.utils.IssuesUtils.ApplicationNameIssu
 import com.countrydelight.lintruleslibrary.utils.IssuesUtils.ApplicationNameIssueText
 import com.countrydelight.lintruleslibrary.utils.IssuesUtils.BroadcastReceiverNameIssue
 import com.countrydelight.lintruleslibrary.utils.IssuesUtils.BroadcastReceiverNameIssueText
+import com.countrydelight.lintruleslibrary.utils.IssuesUtils.DatabaseNameIssue
+import com.countrydelight.lintruleslibrary.utils.IssuesUtils.DatabaseNameIssueText
 import com.countrydelight.lintruleslibrary.utils.IssuesUtils.EnumNameIssue
 import com.countrydelight.lintruleslibrary.utils.IssuesUtils.EnumNameIssueText
 import com.countrydelight.lintruleslibrary.utils.IssuesUtils.FragmentNameIssue
@@ -65,6 +67,8 @@ class RulesDetectors : Detector(), Detector.UastScanner {
                                 handleBroadcastReceiverNameRule(node, context)
                             } else if (superClassName.endsWith("ViewModel")) {
                                 handleViewModelNameRule(node, context)
+                            } else if (superClassName.endsWith("RoomDatabase")) {
+                                handleDatabaseNameRule(node, context)
                             } else if (superClass.isInterface && superClassName.startsWith("I")) {
                                 handleInterfaceImplementationNameRule(node, context)
                             }
@@ -99,6 +103,18 @@ class RulesDetectors : Detector(), Detector.UastScanner {
                 node,
                 context.getLocation(node),
                 packageName
+            )
+        }
+    }
+
+    private fun handleDatabaseNameRule(node: UClass, context: JavaContext) {
+        val className = node.name
+        if (className != null && !className.endsWith("Database")) {
+            context.report(
+                DatabaseNameIssue,
+                node,
+                context.getLocation(node as UElement),
+                DatabaseNameIssueText
             )
         }
     }

@@ -18,7 +18,8 @@ class LintRulesIssueRegistry : IssueRegistry() {
             IssuesUtils.StateNameIssue,
             IssuesUtils.StateFlowNameIssue,
             IssuesUtils.ListNameIssue,
-            IssuesUtils.PackageNameIssue
+            IssuesUtils.PackageNameIssue,
+            IssuesUtils.DatabaseNameIssue
         )
 
 }
