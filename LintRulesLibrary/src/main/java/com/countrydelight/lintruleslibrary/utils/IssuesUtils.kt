@@ -143,11 +143,24 @@ object IssuesUtils {
     )
 
     const val DaoNameIssueText =
-        "Dao name must end with Dao"
+        "Dao must end with Dao"
     val DaoNameIssue = Issue.create(
         "DaoNameRule",
         DaoNameIssueText,
         DaoNameIssueText,
+        Category.CORRECTNESS,
+        6,
+        Severity.WARNING,
+        Implementation(RulesDetectors::class.java, Scope.JAVA_FILE_SCOPE)
+    )
+
+
+    const val EntityIssueText =
+        "Entity class name must end with Entity"
+    val EntityNameIssue = Issue.create(
+        "EntityNameRule",
+        EntityIssueText,
+        EntityIssueText,
         Category.CORRECTNESS,
         6,
         Severity.WARNING,
@@ -163,7 +176,7 @@ object IssuesUtils {
         PackageNameIssueText,
         Category.CORRECTNESS,
         6,
-        Severity.ERROR,
+        Severity.WARNING,
         Implementation(RulesDetectors::class.java, Scope.JAVA_FILE_SCOPE)
     )
 

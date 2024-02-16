@@ -13,6 +13,8 @@ import com.countrydelight.lintruleslibrary.utils.IssuesUtils.DaoNameIssue
 import com.countrydelight.lintruleslibrary.utils.IssuesUtils.DaoNameIssueText
 import com.countrydelight.lintruleslibrary.utils.IssuesUtils.DatabaseNameIssue
 import com.countrydelight.lintruleslibrary.utils.IssuesUtils.DatabaseNameIssueText
+import com.countrydelight.lintruleslibrary.utils.IssuesUtils.EntityIssueText
+import com.countrydelight.lintruleslibrary.utils.IssuesUtils.EntityNameIssue
 import com.countrydelight.lintruleslibrary.utils.IssuesUtils.EnumNameIssue
 import com.countrydelight.lintruleslibrary.utils.IssuesUtils.EnumNameIssueText
 import com.countrydelight.lintruleslibrary.utils.IssuesUtils.FragmentNameIssue
@@ -61,6 +63,8 @@ class RulesDetectors : Detector(), Detector.UastScanner {
                         handleInterfaceNameRule(node, context)
                     } else if (node.isEnum) {
                         handleEnumNameRule(node, context)
+                    } else if (node.annotations.any { it.text.endsWith("Entity") }) {
+                        handleEntityNameRule(node, context)
                     } else if (superClassList.isNotEmpty()) {
                         superClassList.forEach { superClass ->
                             val superClassName = superClass.name ?: return
@@ -171,6 +175,19 @@ class RulesDetectors : Detector(), Detector.UastScanner {
                 node,
                 context.getLocation(node as UElement),
                 InterfaceImplementationNameIssueText
+            )
+        }
+    }
+
+
+    private fun handleEntityNameRule(node: UClass, context: JavaContext) {
+        val className = node.name
+        if (className != null && !className.endsWith("Entity")) {
+            context.report(
+                EntityNameIssue,
+                node,
+                context.getLocation(node as UElement),
+                EntityIssueText
             )
         }
     }
