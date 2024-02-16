@@ -16,7 +16,8 @@ class LintRulesIssueRegistry : IssueRegistry() {
             IssuesUtils.EnumNameIssue,
             IssuesUtils.InterfaceImplementationNameIssue,
             IssuesUtils.StateNameIssue,
-            IssuesUtils.StateFlowNameIssue
+            IssuesUtils.StateFlowNameIssue,
+            IssuesUtils.ListNameIssue
         )
 
 }

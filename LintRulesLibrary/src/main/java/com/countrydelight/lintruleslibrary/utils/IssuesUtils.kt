@@ -120,4 +120,15 @@ object IssuesUtils {
         Implementation(RulesDetectors::class.java, Scope.JAVA_FILE_SCOPE)
     )
 
+    const val ListNameIssueText = "variables of type List must end with List"
+    val ListNameIssue = Issue.create(
+        "ListNameRule",
+        ListNameIssueText,
+        ListNameIssueText,
+        Category.CORRECTNESS,
+        6,
+        Severity.WARNING,
+        Implementation(RulesDetectors::class.java, Scope.JAVA_FILE_SCOPE)
+    )
+
 }

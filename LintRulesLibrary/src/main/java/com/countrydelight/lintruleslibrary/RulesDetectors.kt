@@ -17,6 +17,8 @@ import com.countrydelight.lintruleslibrary.utils.IssuesUtils.InterfaceImplementa
 import com.countrydelight.lintruleslibrary.utils.IssuesUtils.InterfaceImplementationNameIssueText
 import com.countrydelight.lintruleslibrary.utils.IssuesUtils.InterfaceNameIssue
 import com.countrydelight.lintruleslibrary.utils.IssuesUtils.InterfaceNameIssueText
+import com.countrydelight.lintruleslibrary.utils.IssuesUtils.ListNameIssue
+import com.countrydelight.lintruleslibrary.utils.IssuesUtils.ListNameIssueText
 import com.countrydelight.lintruleslibrary.utils.IssuesUtils.StateFlowNameIssue
 import com.countrydelight.lintruleslibrary.utils.IssuesUtils.StateFlowNameIssueText
 import com.countrydelight.lintruleslibrary.utils.IssuesUtils.StateNameIssue
@@ -65,31 +67,53 @@ class RulesDetectors : Detector(), Detector.UastScanner {
             }
 
             override fun visitVariable(node: UVariable) {
-                val variableName = node.name
                 val variableType = node.type
                 if (!node.text.contains("fun") && !node.isStatic) {
                     if (variableType.canonicalText.contains("StateFlow") && node.isPhysical) {
-                        if (variableName?.endsWith("StateFlow") == false) {
-                            context.report(
-                                StateFlowNameIssue,
-                                node as UElement,
-                                context.getLocation(node as UElement),
-                                StateFlowNameIssueText
-                            )
-                        }
+                        handleStateFlowNameRule(node, context)
                     } else if (variableType.canonicalText.contains("State") && node.isPhysical) {
-                        if (variableName?.endsWith("State") == false) {
-                            context.report(
-                                StateNameIssue,
-                                node as UElement,
-                                context.getLocation(node as UElement),
-                                StateNameIssueText
-                            )
-                        }
+                        handleStateNameRule(node, context)
+                    } else if (variableType.canonicalText.contains("List") && node.isPhysical) {
+                        handleListNameRule(node, context)
                     }
                 }
             }
 
+        }
+    }
+
+
+    private fun handleListNameRule(node: UVariable, context: JavaContext) {
+        if (node.name?.endsWith("List") == false) {
+            context.report(
+                ListNameIssue,
+                node as UElement,
+                context.getLocation(node as UElement),
+                ListNameIssueText
+            )
+        }
+    }
+
+    private fun handleStateNameRule(node: UVariable, context: JavaContext) {
+        if (node.name?.endsWith("State") == false) {
+            context.report(
+                StateNameIssue,
+                node as UElement,
+                context.getLocation(node as UElement),
+                StateNameIssueText
+            )
+        }
+    }
+
+
+    private fun handleStateFlowNameRule(node: UVariable, context: JavaContext) {
+        if (node.name?.endsWith("StateFlow") == false) {
+            context.report(
+                StateFlowNameIssue,
+                node as UElement,
+                context.getLocation(node as UElement),
+                StateFlowNameIssueText
+            )
         }
     }
 
