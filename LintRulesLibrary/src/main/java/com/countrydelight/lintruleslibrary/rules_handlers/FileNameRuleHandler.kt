@@ -1,7 +1,7 @@
 package com.countrydelight.lintruleslibrary.rules_handlers
 
 import com.android.tools.lint.detector.api.JavaContext
-import com.countrydelight.lintruleslibrary.utils.IssuesUtils
+import com.countrydelight.lintruleslibrary.IssuesUtils
 import org.jetbrains.uast.UFile
 
 object FileNameRuleHandler {

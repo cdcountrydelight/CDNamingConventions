@@ -1,11 +1,10 @@
-package com.countrydelight.lintruleslibrary.utils
+package com.countrydelight.lintruleslibrary
 
 import com.android.tools.lint.detector.api.Category
 import com.android.tools.lint.detector.api.Implementation
 import com.android.tools.lint.detector.api.Issue
 import com.android.tools.lint.detector.api.Scope
 import com.android.tools.lint.detector.api.Severity
-import com.countrydelight.lintruleslibrary.RulesDetectors
 
 object IssuesUtils {
 
@@ -107,7 +106,7 @@ object IssuesUtils {
         Implementation(RulesDetectors::class.java, Scope.JAVA_FILE_SCOPE)
     )
 
-    const val EnumNameIssueText = "Enum class must end with Enum"
+    const val EnumNameIssueText = "Enum class name must end with Enum"
     val EnumNameIssue = Issue.create(
         "EnumNameRule",
         EnumNameIssueText,
@@ -212,6 +211,4 @@ object IssuesUtils {
         Severity.WARNING,
         Implementation(RulesDetectors::class.java, Scope.JAVA_FILE_SCOPE)
     )
-
-
 }

@@ -2,7 +2,6 @@ package com.countrydelight.lintruleslibrary
 
 import com.android.tools.lint.client.api.IssueRegistry
 import com.android.tools.lint.detector.api.Issue
-import com.countrydelight.lintruleslibrary.utils.IssuesUtils
 
 class LintRulesIssueRegistry : IssueRegistry() {
     override val issues: List<Issue>
