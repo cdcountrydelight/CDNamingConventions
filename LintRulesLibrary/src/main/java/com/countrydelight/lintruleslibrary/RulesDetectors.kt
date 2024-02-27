@@ -115,6 +115,12 @@ class RulesDetectors : Detector(), Detector.UastScanner {
         }
     }
 
+
+    /**
+     * Handles the rule for class names ending with "Worker".
+     * @param node The UClass node to inspect.
+     * @param context The JavaContext providing the inspection context.
+     */
     private fun handleWorkerNameRule(node: UClass, context: JavaContext) {
         val className = node.name
         if (className != null && !className.endsWith("Worker")) {
@@ -127,6 +133,12 @@ class RulesDetectors : Detector(), Detector.UastScanner {
         }
     }
 
+
+    /**
+     * Handles the rule for class names ending with "Service".
+     * @param node The UClass node to inspect.
+     * @param context The JavaContext providing the inspection context.
+     */
     private fun handleServiceNameRule(node: UClass, context: JavaContext) {
         val className = node.name
         if (className != null && !className.endsWith("Service")) {
@@ -140,6 +152,11 @@ class RulesDetectors : Detector(), Detector.UastScanner {
     }
 
 
+    /**
+     * Handles the rule for package names adhering to snake case convention.
+     * @param node The UFile node representing the package to inspect.
+     * @param context The JavaContext providing the inspection context.
+     */
     private fun handlePackageNameRule(node: UFile, context: JavaContext) {
         val packageName = node.packageName.substringAfterLast(".")
         if (!isValidSnakeCase(packageName)) {
@@ -152,6 +169,12 @@ class RulesDetectors : Detector(), Detector.UastScanner {
         }
     }
 
+
+    /**
+     * Handles the rule for class names ending with "Database".
+     * @param node The UClass node representing the class to inspect.
+     * @param context The JavaContext providing the inspection context.
+     */
     private fun handleDatabaseNameRule(node: UClass, context: JavaContext) {
         val className = node.name
         if (className != null && !className.endsWith("Database")) {
@@ -164,11 +187,20 @@ class RulesDetectors : Detector(), Detector.UastScanner {
         }
     }
 
+    /**
+     * Checks if a string adheres to snake case convention.
+     * @param name The string to check.
+     * @return True if the string is in snake case format, false otherwise.
+     */
     private fun isValidSnakeCase(name: String): Boolean {
         return name.matches(Regex("^[a-z][a-z0-9_]*$"))
     }
 
-
+    /**
+     * Handles the rule for variable names ending with "Map".
+     * @param node The UVariable node representing the variable to inspect.
+     * @param context The JavaContext providing the inspection context.
+     */
     private fun handleMapNameRule(node: UVariable, context: JavaContext) {
         if (node.name?.endsWith("Map") == false) {
             context.report(
@@ -180,6 +212,12 @@ class RulesDetectors : Detector(), Detector.UastScanner {
         }
     }
 
+
+    /**
+     * Handles the rule for variable names ending with "List".
+     * @param node The UVariable node representing the variable to inspect.
+     * @param context The JavaContext providing the inspection context.
+     */
     private fun handleListNameRule(node: UVariable, context: JavaContext) {
         if (node.name?.endsWith("List") == false) {
             context.report(
@@ -191,6 +229,12 @@ class RulesDetectors : Detector(), Detector.UastScanner {
         }
     }
 
+
+    /**
+     * Handles the rule for variable names ending with "State".
+     * @param node The UVariable node representing the variable to inspect.
+     * @param context The JavaContext providing the inspection context.
+     */
     private fun handleStateNameRule(node: UVariable, context: JavaContext) {
         if (node.name?.endsWith("State") == false) {
             context.report(
@@ -203,6 +247,11 @@ class RulesDetectors : Detector(), Detector.UastScanner {
     }
 
 
+    /**
+     * Handles the rule for variable names ending with "StateFlow".
+     * @param node The UVariable node representing the variable to inspect.
+     * @param context The JavaContext providing the inspection context.
+     */
     private fun handleStateFlowNameRule(node: UVariable, context: JavaContext) {
         if (node.name?.endsWith("StateFlow") == false) {
             context.report(
@@ -214,6 +263,12 @@ class RulesDetectors : Detector(), Detector.UastScanner {
         }
     }
 
+
+    /**
+     * Handles the rule for class names ending with "Impl".
+     * @param node The UClass node representing the class to inspect.
+     * @param context The JavaContext providing the inspection context.
+     */
     private fun handleInterfaceImplementationNameRule(node: UClass, context: JavaContext) {
         val className = node.name
         if (className != null && !className.endsWith("Impl")) {
@@ -226,7 +281,11 @@ class RulesDetectors : Detector(), Detector.UastScanner {
         }
     }
 
-
+    /**
+     * Handles the rule for class names ending with "Entity".
+     * @param node The UClass node representing the class to inspect.
+     * @param context The JavaContext providing the inspection context.
+     */
     private fun handleEntityNameRule(node: UClass, context: JavaContext) {
         val className = node.name
         if (className != null && !className.endsWith("Entity")) {
@@ -239,6 +298,12 @@ class RulesDetectors : Detector(), Detector.UastScanner {
         }
     }
 
+
+    /**
+     * Handles the rule for class names ending with "Enum".
+     * @param node The UClass node representing the class to inspect.
+     * @param context The JavaContext providing the inspection context.
+     */
     private fun handleEnumNameRule(node: UClass, context: JavaContext) {
         val className = node.name
         if (className != null && !className.endsWith("Enum")) {
@@ -252,6 +317,11 @@ class RulesDetectors : Detector(), Detector.UastScanner {
     }
 
 
+    /**
+     * Handles the rule for class names ending with "BroadcastReceiver".
+     * @param node The UClass node representing the class to inspect.
+     * @param context The JavaContext providing the inspection context.
+     */
     private fun handleBroadcastReceiverNameRule(node: UClass, context: JavaContext) {
         val className = node.name
         if (className != null && !className.endsWith("Receiver")) {
@@ -264,6 +334,11 @@ class RulesDetectors : Detector(), Detector.UastScanner {
         }
     }
 
+    /**
+     * Handles the rule for class names ending with "ViewModel".
+     * @param node The UClass node representing the class to inspect.
+     * @param context The JavaContext providing the inspection context.
+     */
     private fun handleViewModelNameRule(node: UClass, context: JavaContext) {
         val className = node.name
         if (className != null && !className.endsWith("ViewModel")) {
@@ -276,6 +351,12 @@ class RulesDetectors : Detector(), Detector.UastScanner {
         }
     }
 
+
+    /**
+     * Handles the rule for class names ending with "Fragment".
+     * @param node The UClass node representing the class to inspect.
+     * @param context The JavaContext providing the inspection context.
+     */
     private fun handleFragmentNameRule(node: UClass, context: JavaContext) {
         val className = node.name
         if (className != null && !className.endsWith("Fragment")) {
@@ -288,7 +369,11 @@ class RulesDetectors : Detector(), Detector.UastScanner {
         }
     }
 
-
+    /**
+     * Handles the rule for class names ending with "Application".
+     * @param node The UClass node representing the class to inspect.
+     * @param context The JavaContext providing the inspection context.
+     */
     private fun handleApplicationNameRule(node: UClass, context: JavaContext) {
         val className = node.name
         if (className != null && !className.endsWith("Application")) {
@@ -302,6 +387,11 @@ class RulesDetectors : Detector(), Detector.UastScanner {
     }
 
 
+    /**
+     * Handles the rule for class names ending with "Activity".
+     * @param node The UClass node representing the class to inspect.
+     * @param context The JavaContext providing the inspection context.
+     */
     private fun handleActivityNameRule(node: UClass, context: JavaContext) {
         val className = node.name
         if (className != null && !className.endsWith("Activity")) {
@@ -314,6 +404,11 @@ class RulesDetectors : Detector(), Detector.UastScanner {
         }
     }
 
+    /**
+     * Handles the rule for class names of type interface.
+     * @param node The UClass node to inspect.
+     * @param context The JavaContext providing the inspection context.
+     */
     private fun handleInterfaceNameRule(node: UClass, context: JavaContext) {
         val className = node.name
         val isDao = node.annotations.any { it.text.contains("Dao") }
