@@ -63,6 +63,16 @@ object IssuesUtils {
         Severity.WARNING,
         Implementation(RulesDetectors::class.java, Scope.JAVA_FILE_SCOPE)
     )
+    const val ServiceNameIssueText = "Service name must end with Service"
+    val ServiceNameIssue = Issue.create(
+        "ServiceNameRule",
+        ServiceNameIssueText,
+        ServiceNameIssueText,
+        Category.CORRECTNESS,
+        6,
+        Severity.WARNING,
+        Implementation(RulesDetectors::class.java, Scope.JAVA_FILE_SCOPE)
+    )
 
     const val DatabaseNameIssueText = "Room Database name must end with Database"
     val DatabaseNameIssue = Issue.create(

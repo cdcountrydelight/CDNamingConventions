@@ -29,6 +29,8 @@ import com.countrydelight.lintruleslibrary.utils.IssuesUtils.MapNameIssue
 import com.countrydelight.lintruleslibrary.utils.IssuesUtils.MapNameIssueText
 import com.countrydelight.lintruleslibrary.utils.IssuesUtils.PackageNameIssue
 import com.countrydelight.lintruleslibrary.utils.IssuesUtils.PackageNameIssueText
+import com.countrydelight.lintruleslibrary.utils.IssuesUtils.ServiceNameIssue
+import com.countrydelight.lintruleslibrary.utils.IssuesUtils.ServiceNameIssueText
 import com.countrydelight.lintruleslibrary.utils.IssuesUtils.StateFlowNameIssue
 import com.countrydelight.lintruleslibrary.utils.IssuesUtils.StateFlowNameIssueText
 import com.countrydelight.lintruleslibrary.utils.IssuesUtils.StateNameIssue
@@ -84,6 +86,8 @@ class RulesDetectors : Detector(), Detector.UastScanner {
                                 handleDatabaseNameRule(node, context)
                             } else if (superClass.isInterface && superClassName.startsWith("I")) {
                                 handleInterfaceImplementationNameRule(node, context)
+                            } else if (superClassName.endsWith("Service")) {
+                                handleServiceNameRule(node, context)
                             }
                         }
                     }
@@ -104,6 +108,18 @@ class RulesDetectors : Detector(), Detector.UastScanner {
                     }
                 }
             }
+        }
+    }
+
+    private fun handleServiceNameRule(node: UClass, context: JavaContext) {
+        val className = node.name
+        if (className != null && !className.endsWith("Service")) {
+            context.report(
+                ServiceNameIssue,
+                node,
+                context.getLocation(node as UElement),
+                ServiceNameIssueText
+            )
         }
     }
 
