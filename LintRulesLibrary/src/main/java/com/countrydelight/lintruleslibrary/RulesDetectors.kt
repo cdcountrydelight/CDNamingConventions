@@ -37,6 +37,8 @@ import com.countrydelight.lintruleslibrary.utils.IssuesUtils.StateNameIssue
 import com.countrydelight.lintruleslibrary.utils.IssuesUtils.StateNameIssueText
 import com.countrydelight.lintruleslibrary.utils.IssuesUtils.ViewModelNameIssue
 import com.countrydelight.lintruleslibrary.utils.IssuesUtils.ViewModelNameIssueText
+import com.countrydelight.lintruleslibrary.utils.IssuesUtils.WorkerNameIssue
+import com.countrydelight.lintruleslibrary.utils.IssuesUtils.WorkerNameIssueText
 import org.jetbrains.uast.UClass
 import org.jetbrains.uast.UElement
 import org.jetbrains.uast.UFile
@@ -88,6 +90,8 @@ class RulesDetectors : Detector(), Detector.UastScanner {
                                 handleInterfaceImplementationNameRule(node, context)
                             } else if (superClassName.endsWith("Service")) {
                                 handleServiceNameRule(node, context)
+                            } else if (superClassName.endsWith("Worker")) {
+                                handleWorkerNameRule(node, context)
                             }
                         }
                     }
@@ -108,6 +112,18 @@ class RulesDetectors : Detector(), Detector.UastScanner {
                     }
                 }
             }
+        }
+    }
+
+    private fun handleWorkerNameRule(node: UClass, context: JavaContext) {
+        val className = node.name
+        if (className != null && !className.endsWith("Worker")) {
+            context.report(
+                WorkerNameIssue,
+                node,
+                context.getLocation(node as UElement),
+                WorkerNameIssueText
+            )
         }
     }
 

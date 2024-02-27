@@ -74,6 +74,17 @@ object IssuesUtils {
         Implementation(RulesDetectors::class.java, Scope.JAVA_FILE_SCOPE)
     )
 
+    const val WorkerNameIssueText = "Worker name must end with Worker"
+    val WorkerNameIssue = Issue.create(
+        "WorkerNameRule",
+        WorkerNameIssueText,
+        WorkerNameIssueText,
+        Category.CORRECTNESS,
+        6,
+        Severity.WARNING,
+        Implementation(RulesDetectors::class.java, Scope.JAVA_FILE_SCOPE)
+    )
+
     const val DatabaseNameIssueText = "Room Database name must end with Database"
     val DatabaseNameIssue = Issue.create(
         "DatabaseNameRule",

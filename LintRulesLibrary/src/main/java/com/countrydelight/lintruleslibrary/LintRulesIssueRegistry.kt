@@ -23,7 +23,8 @@ class LintRulesIssueRegistry : IssueRegistry() {
             IssuesUtils.DaoNameIssue,
             IssuesUtils.EntityNameIssue,
             IssuesUtils.MapNameIssue,
-            IssuesUtils.ServiceNameIssue
+            IssuesUtils.ServiceNameIssue,
+            IssuesUtils.WorkerNameIssue
         )
 
 }
