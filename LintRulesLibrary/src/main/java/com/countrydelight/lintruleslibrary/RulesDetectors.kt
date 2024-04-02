@@ -82,13 +82,26 @@ class RulesDetectors : Detector(), Detector.UastScanner {
             override fun visitVariable(node: UVariable) {
                 val variableType = node.type
                 if (!node.text.contains("fun") && !node.isStatic) {
-                    if (variableType.canonicalText.contains("StateFlow") && node.isPhysical) {
+                    if ((variableType.canonicalText.startsWith("kotlinx.coroutines.flow.MutableStateFlow")
+                                || variableType.canonicalText.startsWith("kotlinx.coroutines.flow.StateFlow"))
+                        && node.isPhysical
+                    ) {
                         handleStateFlowNameRule(node, context)
-                    } else if (variableType.canonicalText.contains("State") && node.isPhysical) {
+                    } else if ((variableType.canonicalText.startsWith("androidx.compose.runtime.MutableState")
+                                || variableType.canonicalText.startsWith("androidx.compose.runtime.State"))
+                        && node.isPhysical
+                    ) {
                         handleStateNameRule(node, context)
-                    } else if (variableType.canonicalText.contains("List") && node.isPhysical) {
+                    } else if ((variableType.canonicalText.startsWith("java.util.List")
+                                || variableType.canonicalText.startsWith("java.util.ArrayList"))
+                        && node.isPhysical
+                    ) {
                         handleListNameRule(node, context)
-                    } else if (variableType.canonicalText.contains("Map") && node.isPhysical) {
+                    } else if ((
+                                variableType.canonicalText.startsWith("java.util.HashMap")
+                                        || variableType.canonicalText.startsWith("java.util.Map"))
+                        && node.isPhysical
+                    ) {
                         handleMapNameRule(node, context)
                     }
                 }
