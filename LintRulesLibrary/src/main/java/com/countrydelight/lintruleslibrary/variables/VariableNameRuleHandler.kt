@@ -1,7 +1,6 @@
-package com.countrydelight.lintruleslibrary.rules_handlers
+package com.countrydelight.lintruleslibrary.variables
 
 import com.android.tools.lint.detector.api.JavaContext
-import com.countrydelight.lintruleslibrary.IssuesUtils
 import org.jetbrains.uast.UElement
 import org.jetbrains.uast.UVariable
 
@@ -14,10 +13,10 @@ object VariableNameRuleHandler {
     fun handleStateFlowNameRule(node: UVariable, context: JavaContext) {
         if (node.name?.endsWith("StateFlow") == false) {
             context.report(
-                IssuesUtils.StateFlowNameIssue,
+                VariableNameIssueUtils.StateFlowNameIssue,
                 node as UElement,
                 context.getLocation(node as UElement),
-                IssuesUtils.StateFlowNameIssueText
+                VariableNameIssueUtils.STATE_FLOW_NAME_ISSUE_TEXT
             )
         }
     }
@@ -30,10 +29,10 @@ object VariableNameRuleHandler {
     fun handleStateNameRule(node: UVariable, context: JavaContext) {
         if (node.name?.endsWith("State") == false) {
             context.report(
-                IssuesUtils.StateNameIssue,
+                VariableNameIssueUtils.StateNameIssue,
                 node as UElement,
                 context.getLocation(node as UElement),
-                IssuesUtils.StateNameIssueText
+                VariableNameIssueUtils.STATE_NAME_ISSUE_TEXT
             )
         }
     }
@@ -46,10 +45,10 @@ object VariableNameRuleHandler {
     fun handleMapNameRule(node: UVariable, context: JavaContext) {
         if (node.name?.endsWith("Map") == false) {
             context.report(
-                IssuesUtils.MapNameIssue,
+                VariableNameIssueUtils.MapNameIssue,
                 node as UElement,
                 context.getLocation(node as UElement),
-                IssuesUtils.MapNameIssueText
+                VariableNameIssueUtils.MAP_NAME_ISSUE_TEXT
             )
         }
     }
@@ -63,10 +62,10 @@ object VariableNameRuleHandler {
     fun handleListNameRule(node: UVariable, context: JavaContext) {
         if (node.name?.endsWith("List") == false) {
             context.report(
-                IssuesUtils.ListNameIssue,
+                VariableNameIssueUtils.ListNameIssue,
                 node as UElement,
                 context.getLocation(node as UElement),
-                IssuesUtils.ListNameIssueText
+                VariableNameIssueUtils.LIST_NAME_ISSUE_TEXT
             )
         }
     }

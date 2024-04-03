@@ -1,7 +1,6 @@
-package com.countrydelight.lintruleslibrary.rules_handlers
+package com.countrydelight.lintruleslibrary.files
 
 import com.android.tools.lint.detector.api.JavaContext
-import com.countrydelight.lintruleslibrary.IssuesUtils
 import org.jetbrains.uast.UFile
 
 object FileNameRuleHandler {
@@ -14,10 +13,10 @@ object FileNameRuleHandler {
         val packageName = node.packageName.substringAfterLast(".")
         if (!isValidSnakeCase(packageName)) {
             context.report(
-                IssuesUtils.PackageNameIssue,
+                FileNameIssueUtils.PackageNameIssue,
                 node,
                 context.getLocation(node),
-                IssuesUtils.PackageNameIssueText
+                FileNameIssueUtils.PACKAGE_NAME_ISSUE_TEXT
             )
         }
     }

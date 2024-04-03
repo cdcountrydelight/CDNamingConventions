@@ -1,7 +1,6 @@
-package com.countrydelight.lintruleslibrary.rules_handlers
+package com.countrydelight.lintruleslibrary.classes
 
 import com.android.tools.lint.detector.api.JavaContext
-import com.countrydelight.lintruleslibrary.IssuesUtils
 import org.jetbrains.uast.UClass
 import org.jetbrains.uast.UElement
 
@@ -18,20 +17,20 @@ internal object ClassNameRuleHandler {
         if (isDao) {
             if (!className.endsWith("Dao")) {
                 context.report(
-                    IssuesUtils.DaoNameIssue,
+                    ClassesNameIssueUtils.DaoNameIssue,
                     node,
                     context.getLocation(node as UElement),
-                    IssuesUtils.DaoNameIssueText
+                    ClassesNameIssueUtils.DAO_NAME_ISSUE_TEXT
                 )
             }
         }
         //because annotation are internally treated as interface class
         else if (className.first() != 'I' && !node.text.contains("annotation")) {
             context.report(
-                IssuesUtils.InterfaceNameIssue,
+                ClassesNameIssueUtils.InterfaceNameIssue,
                 node,
                 context.getLocation(node as UElement),
-                IssuesUtils.InterfaceNameIssueText
+                ClassesNameIssueUtils.INTERFACE_NAME_ISSUE_TEXT
             )
         }
     }
@@ -45,10 +44,10 @@ internal object ClassNameRuleHandler {
         val className = node.name
         if (className != null && !className.endsWith("Enum")) {
             context.report(
-                IssuesUtils.EnumNameIssue,
+                ClassesNameIssueUtils.EnumNameIssue,
                 node,
                 context.getLocation(node as UElement),
-                IssuesUtils.EnumNameIssueText
+                ClassesNameIssueUtils.ENUM_NAME_ISSUE_TEXT
             )
         }
     }
@@ -62,10 +61,10 @@ internal object ClassNameRuleHandler {
         val className = node.name
         if (className != null && !className.endsWith("Entity")) {
             context.report(
-                IssuesUtils.EntityNameIssue,
+                ClassesNameIssueUtils.EntityNameIssue,
                 node,
                 context.getLocation(node as UElement),
-                IssuesUtils.EntityIssueText
+                ClassesNameIssueUtils.ENTITY_NAME_ISSUE_TEXT
             )
         }
     }
@@ -79,10 +78,10 @@ internal object ClassNameRuleHandler {
         val className = node.name
         if (className != null && !className.endsWith("Receiver")) {
             context.report(
-                IssuesUtils.BroadcastReceiverNameIssue,
+                ClassesNameIssueUtils.BroadcastReceiverNameIssue,
                 node,
                 context.getLocation(node as UElement),
-                IssuesUtils.BroadcastReceiverNameIssueText
+                ClassesNameIssueUtils.BROADCAST_RECEIVER_NAME_ISSUE_TEXT
             )
         }
     }
@@ -96,10 +95,10 @@ internal object ClassNameRuleHandler {
         val className = node.name
         if (className != null && !className.endsWith("ViewModel")) {
             context.report(
-                IssuesUtils.ViewModelNameIssue,
+                ClassesNameIssueUtils.ViewModelNameIssue,
                 node,
                 context.getLocation(node as UElement),
-                IssuesUtils.ViewModelNameIssueText
+                ClassesNameIssueUtils.VIEW_MODEL_NAME_ISSUE_TEXT
             )
         }
     }
@@ -114,10 +113,10 @@ internal object ClassNameRuleHandler {
         val className = node.name
         if (className != null && !className.endsWith("Fragment")) {
             context.report(
-                IssuesUtils.FragmentNameIssue,
+                ClassesNameIssueUtils.FragmentNameIssue,
                 node,
                 context.getLocation(node as UElement),
-                IssuesUtils.FragmentNameIssueText
+                ClassesNameIssueUtils.FRAGMENT_NAME_ISSUE_TEXT
             )
         }
     }
@@ -131,10 +130,10 @@ internal object ClassNameRuleHandler {
         val className = node.name
         if (className != null && !className.endsWith("Application")) {
             context.report(
-                IssuesUtils.ApplicationNameIssue,
+                ClassesNameIssueUtils.ApplicationNameIssue,
                 node,
                 context.getLocation(node as UElement),
-                IssuesUtils.ApplicationNameIssueText
+                ClassesNameIssueUtils.APPLICATION_NAME_ISSUE_TEXT
             )
         }
     }
@@ -149,10 +148,10 @@ internal object ClassNameRuleHandler {
         val className = node.name
         if (className != null && !className.endsWith("Activity")) {
             context.report(
-                IssuesUtils.ActivityNameIssue,
+                ClassesNameIssueUtils.ActivityNameIssue,
                 node,
                 context.getLocation(node as UElement),
-                IssuesUtils.ActivityNameIssueText
+                ClassesNameIssueUtils.ACTIVITY_NAME_ISSUE_TEXT
             )
         }
     }
@@ -166,10 +165,10 @@ internal object ClassNameRuleHandler {
         val className = node.name
         if (className != null && !className.endsWith("Database")) {
             context.report(
-                IssuesUtils.DatabaseNameIssue,
+                ClassesNameIssueUtils.DatabaseNameIssue,
                 node,
                 context.getLocation(node as UElement),
-                IssuesUtils.DatabaseNameIssueText
+                ClassesNameIssueUtils.DATABASE_NAME_ISSUE_TEXT
             )
         }
     }
@@ -183,10 +182,10 @@ internal object ClassNameRuleHandler {
         val className = node.name
         if (className != null && !className.endsWith("Impl")) {
             context.report(
-                IssuesUtils.InterfaceImplementationNameIssue,
+                ClassesNameIssueUtils.InterfaceImplementationNameIssue,
                 node,
                 context.getLocation(node as UElement),
-                IssuesUtils.InterfaceImplementationNameIssueText
+                ClassesNameIssueUtils.INTERFACE_IMPLEMENTATION_NAME_ISSUE_TEXT
             )
         }
     }
@@ -200,10 +199,10 @@ internal object ClassNameRuleHandler {
         val className = node.name
         if (className != null && !className.endsWith("Service")) {
             context.report(
-                IssuesUtils.ServiceNameIssue,
+                ClassesNameIssueUtils.ServiceNameIssue,
                 node,
                 context.getLocation(node as UElement),
-                IssuesUtils.ServiceNameIssueText
+                ClassesNameIssueUtils.SERVICE_NAME_ISSUE_TEXT
             )
         }
     }
@@ -217,10 +216,10 @@ internal object ClassNameRuleHandler {
         val className = node.name
         if (className != null && !className.endsWith("Worker")) {
             context.report(
-                IssuesUtils.WorkerNameIssue,
+                ClassesNameIssueUtils.WorkerNameIssue,
                 node,
                 context.getLocation(node as UElement),
-                IssuesUtils.WorkerNameIssueText
+                ClassesNameIssueUtils.WORKER_NAME_ISSUE_TEXT
             )
         }
     }
