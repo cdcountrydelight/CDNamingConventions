@@ -10,7 +10,7 @@ import com.countrydelight.lintruleslibrary.variables.VariableNameIssueUtils
 class LintRulesIssueRegistry : IssueRegistry() {
     override val issues: List<Issue>
         get() {
-            val issueList = listOf(
+            return listOf(
                 //variables
                 VariableNameIssueUtils.ListNameIssue,
                 VariableNameIssueUtils.MapNameIssue,
@@ -33,7 +33,6 @@ class LintRulesIssueRegistry : IssueRegistry() {
                 //package
                 FileNameIssueUtils.PackageNameIssue,
             )
-            return issueList
         }
     override val api: Int
         get() = CURRENT_API
