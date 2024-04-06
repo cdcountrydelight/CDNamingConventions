@@ -33,7 +33,6 @@ class LintRulesIssueRegistry : IssueRegistry() {
                 //package
                 FileNameIssueUtils.PackageNameIssue,
             )
-            println("Issues:- ${issueList.joinToString { it.id }}")
             return issueList
         }
     override val api: Int
