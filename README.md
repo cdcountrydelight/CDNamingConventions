@@ -2,6 +2,10 @@
 
 CDNamingConventions is a lint rule library for enforcing coding patterns in Android projects. It provides custom lint rules that aim to improve code consistency and maintainability by enforcing specific naming conventions and patterns.
 
+![Platform](https://img.shields.io/badge/Platform-Android-darkcyan) &nbsp;
+![Language](https://img.shields.io/badge/Language-Kotlin-blue)
+
+
 ## Features
 
 CDNamingConventions enforces the following coding patterns:
