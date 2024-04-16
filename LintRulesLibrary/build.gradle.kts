@@ -14,4 +14,17 @@ dependencies {
     compileOnly("com.android.tools.lint:lint-api:31.2.2")
 }
 
+afterEvaluate {
+    with(publishing) {
+        publications {
+            create<MavenPublication>("maven") {
+                groupId = "com.github.cdcountrydelight"
+                artifactId = "CDNamingConventions"
+                version = "1.0.0"
+                from(components["java"])
+            }
+        }
+    }
+}
+
 
