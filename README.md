@@ -72,6 +72,6 @@ Add it in your `build.gradle` (module level) file:
 
 ```kotlin
 dependencies {
-    implementation ("com.github.cdcountrydelight:CDNamingConventions:<latest-version>")
+    lintChecks ("com.github.cdcountrydelight:CDNamingConventions:<latest-version>")
 }
 ```
