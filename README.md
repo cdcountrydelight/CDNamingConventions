@@ -1,10 +1,10 @@
-# CustomLintRules
+# CDNamingConventions
 
-CustomLintRules is a lint rule library for enforcing coding patterns in Android projects. It provides custom lint rules that aim to improve code consistency and maintainability by enforcing specific naming conventions and patterns.
+CDNamingConventions is a lint rule library for enforcing coding patterns in Android projects. It provides custom lint rules that aim to improve code consistency and maintainability by enforcing specific naming conventions and patterns.
 
 ## Features
 
-CustomLintRules enforces the following coding patterns:
+CDNamingConventions enforces the following coding patterns:
 
 - Activity names must end with "Activity".
 - Fragment names must end with "Fragment".
@@ -27,7 +27,7 @@ CustomLintRules enforces the following coding patterns:
 
 ## Installation
 
-To install CustomLintRules in your Android project :- , 
+To install CDNamingConventions in your Android project :- , 
 
 - Add the library in the project ( by simply downloading and copying it to project root level).
 - Add the following dependency to your modules `build.gradle` file:
