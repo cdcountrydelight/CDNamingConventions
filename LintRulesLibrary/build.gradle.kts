@@ -6,8 +6,8 @@ plugins {
 }
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_1_8
-    targetCompatibility = JavaVersion.VERSION_1_8
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
 }
 
 dependencies {
@@ -17,7 +17,10 @@ dependencies {
 afterEvaluate {
     with(publishing) {
         publications {
-            create<MavenPublication>("maven") {
+            create<MavenPublication>("mavenJava") {
+                pom {
+                    name = "CdNamingRules"
+                }
                 groupId = "com.github.cdcountrydelight"
                 artifactId = "CDNamingConventions"
                 version = "1.0.0"
