@@ -1,4 +1,4 @@
-package com.countrydelight.lintruleslibrary.files
+package com.countrydelight.lintruleslibrary.kotlin_and_java.files
 
 import com.android.tools.lint.detector.api.Category
 import com.android.tools.lint.detector.api.Implementation

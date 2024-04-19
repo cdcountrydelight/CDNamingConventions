@@ -1,4 +1,4 @@
-package com.countrydelight.lintruleslibrary.classes
+package com.countrydelight.lintruleslibrary.kotlin_and_java.classes
 
 import com.android.tools.lint.client.api.UElementHandler
 import com.android.tools.lint.detector.api.Detector
@@ -41,7 +41,8 @@ class ClassNameRuleDetector : Detector(), Detector.UastScanner {
                             } else if (superClass.isInterface && superClassName.startsWith("I")) {
                                 ClassNameRuleHandler.handleInterfaceImplementationNameRule(
                                     node,
-                                    context
+                                    context,
+                                    node.supers
                                 )
                             } else if (superClassName.endsWith("Service")) {
                                 ClassNameRuleHandler.handleServiceNameRule(node, context)

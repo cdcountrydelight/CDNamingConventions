@@ -68,7 +68,7 @@ dependencies {
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
     lintChecks(project( ":LintRulesLibrary"))
-   // implementation ("com.github.cdcountrydelight:CDNamingConventions:1.0.0")
+   // lintChecks ("com.github.cdcountrydelight:CDNamingConventions:1.0.1")
     val room_version = "2.6.1"
     implementation("androidx.room:room-runtime:$room_version")
     annotationProcessor("androidx.room:room-compiler:$room_version")
