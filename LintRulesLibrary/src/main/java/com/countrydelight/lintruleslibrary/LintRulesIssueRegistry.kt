@@ -3,9 +3,9 @@ package com.countrydelight.lintruleslibrary
 import com.android.tools.lint.client.api.IssueRegistry
 import com.android.tools.lint.detector.api.CURRENT_API
 import com.android.tools.lint.detector.api.Issue
-import com.countrydelight.lintruleslibrary.classes.ClassesNameIssueUtils
-import com.countrydelight.lintruleslibrary.files.FileNameIssueUtils
-import com.countrydelight.lintruleslibrary.variables.VariableNameIssueUtils
+import com.countrydelight.lintruleslibrary.kotlin_and_java.classes.ClassesNameIssueUtils
+import com.countrydelight.lintruleslibrary.kotlin_and_java.files.FileNameIssueUtils
+import com.countrydelight.lintruleslibrary.kotlin_and_java.variables.VariableNameIssueUtils
 import com.countrydelight.lintruleslibrary.xml.layout.XMLLayoutIssueUtils
 
 class LintRulesIssueRegistry : IssueRegistry() {

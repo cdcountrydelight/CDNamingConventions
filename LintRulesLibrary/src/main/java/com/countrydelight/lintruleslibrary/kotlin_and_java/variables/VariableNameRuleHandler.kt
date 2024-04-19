@@ -1,4 +1,4 @@
-package com.countrydelight.lintruleslibrary.variables
+package com.countrydelight.lintruleslibrary.kotlin_and_java.variables
 
 import com.android.tools.lint.detector.api.JavaContext
 import org.jetbrains.uast.UElement
