@@ -120,8 +120,8 @@ object ClassesNameIssueUtils {
         "Interface implementation class must end with Impl"
     val InterfaceImplementationNameIssue = Issue.create(
         "InterfaceImplementationNameRule",
-        INTERFACE_IMPLEMENTATION_NAME_ISSUE_TEXT,
-        INTERFACE_IMPLEMENTATION_NAME_ISSUE_TEXT,
+        "hello",
+        "hello",
         Category.CORRECTNESS,
         6,
         Severity.WARNING,

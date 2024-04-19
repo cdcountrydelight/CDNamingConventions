@@ -1,5 +1,7 @@
 package com.countrydelight.lintruleproject.kotlin_test
 
+import androidx.activity.ComponentActivity
+
 interface IKotlinTest {
 }
 
@@ -13,3 +15,5 @@ class RightImpl : IKotlinTest {
 
 }
 
+
+class TestActivity : ComponentActivity(), IKotlinTest

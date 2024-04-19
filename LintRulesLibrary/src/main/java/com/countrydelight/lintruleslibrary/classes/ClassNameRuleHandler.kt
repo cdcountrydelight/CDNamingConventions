@@ -1,6 +1,7 @@
 package com.countrydelight.lintruleslibrary.classes
 
 import com.android.tools.lint.detector.api.JavaContext
+import com.intellij.psi.PsiClass
 import org.jetbrains.uast.UClass
 import org.jetbrains.uast.UElement
 
@@ -178,9 +179,26 @@ internal object ClassNameRuleHandler {
      * @param node The UClass node representing the class to inspect.
      * @param context The JavaContext providing the inspection context.
      */
-    fun handleInterfaceImplementationNameRule(node: UClass, context: JavaContext) {
+    fun handleInterfaceImplementationNameRule(
+        node: UClass,
+        context: JavaContext,
+        superClasses: Array<PsiClass>
+    ) {
         val className = node.name
-        if (className != null && !className.endsWith("Impl")) {
+        var showInterfaceImplementationWarning = true
+        superClasses.forEach {
+            val superClassName = it.name ?: return
+            if (superClassName.endsWith("Activity")
+                || superClassName.endsWith("BroadcastReceiver")
+                || superClassName.endsWith("ViewModel")
+                || superClassName.endsWith("Fragment")
+                || superClassName.endsWith("Service")
+                || superClassName.endsWith("Adapter")
+            ) {
+                showInterfaceImplementationWarning = false
+            }
+        }
+        if (className != null && !className.endsWith("Impl") && showInterfaceImplementationWarning) {
             context.report(
                 ClassesNameIssueUtils.InterfaceImplementationNameIssue,
                 node,

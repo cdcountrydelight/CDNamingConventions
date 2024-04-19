@@ -41,7 +41,8 @@ class ClassNameRuleDetector : Detector(), Detector.UastScanner {
                             } else if (superClass.isInterface && superClassName.startsWith("I")) {
                                 ClassNameRuleHandler.handleInterfaceImplementationNameRule(
                                     node,
-                                    context
+                                    context,
+                                    node.supers
                                 )
                             } else if (superClassName.endsWith("Service")) {
                                 ClassNameRuleHandler.handleServiceNameRule(node, context)
