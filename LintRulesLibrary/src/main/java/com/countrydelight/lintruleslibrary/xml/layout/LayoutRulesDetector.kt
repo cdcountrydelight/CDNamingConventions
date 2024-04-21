@@ -1,17 +1,15 @@
 package com.countrydelight.lintruleslibrary.xml.layout
 
 import com.android.resources.ResourceFolderType
-import com.android.tools.lint.detector.api.Category
-import com.android.tools.lint.detector.api.Implementation
-import com.android.tools.lint.detector.api.Issue
 import com.android.tools.lint.detector.api.ResourceXmlDetector
-import com.android.tools.lint.detector.api.Scope
-import com.android.tools.lint.detector.api.Severity
 import com.android.tools.lint.detector.api.XmlContext
-import com.countrydelight.lintruleslibrary.xml.layout.XMLLayoutRulesHandler.handleIdNameRule
+import com.android.tools.lint.detector.api.XmlScannerConstants
+import com.countrydelight.lintruleslibrary.xml.layout.LayoutRulesHandler.handleIdNameRule
+import com.countrydelight.lintruleslibrary.xml.layout.LayoutRulesHandler.handleLayoutFileNameRule
 import org.w3c.dom.Attr
+import org.w3c.dom.Element
 
-class XMLLayoutRulesDetector : ResourceXmlDetector() {
+class LayoutRulesDetector : ResourceXmlDetector() {
 
     companion object {
 
@@ -26,9 +24,17 @@ class XMLLayoutRulesDetector : ResourceXmlDetector() {
     }
 
 
+    override fun getApplicableElements(): Collection<String>? {
+        return XmlScannerConstants.ALL
+    }
+
+
     override fun visitAttribute(context: XmlContext, attribute: Attr) {
         handleIdNameRule(context, attribute)
+    }
 
+    override fun visitElement(context: XmlContext, element: Element) {
+        handleLayoutFileNameRule(context, element)
     }
 
 

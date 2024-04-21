@@ -6,7 +6,7 @@ import com.android.tools.lint.detector.api.Issue
 import com.android.tools.lint.detector.api.Scope
 import com.android.tools.lint.detector.api.Severity
 
-object XMLLayoutIssueUtils {
+object LayoutIssueUtils {
 
     private const val ID_NAME_ISSUE_TEXT =
         " ID name for an XML element must end with an underscore followed by a combination of uppercase letters in element"
@@ -17,7 +17,22 @@ object XMLLayoutIssueUtils {
         category = Category.CORRECTNESS,
         severity = Severity.WARNING,
         implementation = Implementation(
-            XMLLayoutRulesDetector::class.java,
+            LayoutRulesDetector::class.java,
+            Scope.RESOURCE_FILE_SCOPE
+        )
+    )
+
+
+    const val LAYOUT_FILE_NAME_ISSUE_TEXT =
+        "Layout file name must start with fragment_  for Fragment , activity_  for Activity , item_  for RecyclerView item , layout_  for any other layout "
+    val LayoutFileNameRule = Issue.create(
+        id = "LayoutFileNameRule",
+        briefDescription = LAYOUT_FILE_NAME_ISSUE_TEXT,
+        explanation = LAYOUT_FILE_NAME_ISSUE_TEXT,
+        category = Category.CORRECTNESS,
+        severity = Severity.WARNING,
+        implementation = Implementation(
+            LayoutRulesDetector::class.java,
             Scope.RESOURCE_FILE_SCOPE
         )
     )
