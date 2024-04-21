@@ -51,4 +51,15 @@ object VariableNameIssueUtils {
         Severity.WARNING,
         Implementation(VariableNameRuleDetector::class.java, Scope.JAVA_FILE_SCOPE)
     )
+
+    const val LIVE_DATA_NAME_ISSUE_TEXT = "variables of type LiveData must end with LiveData"
+    val LiveDataNameIssue = Issue.create(
+        "LiveDataNameRule",
+        LIVE_DATA_NAME_ISSUE_TEXT,
+        LIVE_DATA_NAME_ISSUE_TEXT,
+        Category.CORRECTNESS,
+        6,
+        Severity.WARNING,
+        Implementation(VariableNameRuleDetector::class.java, Scope.JAVA_FILE_SCOPE)
+    )
 }

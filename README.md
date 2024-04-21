@@ -51,6 +51,8 @@ CDNamingConventions enforces the following coding patterns:
 
   - Worker class names must end with **`Worker`**.
 
+  - MutableLiveData/LiveData variables must end with **`LiveData`**.
+
 - **XML**
 
   - Element Id must end with underscore followed by capital letters in element , eg for
