@@ -32,12 +32,16 @@ class VariableNameRuleDetector : Detector(), Detector.UastScanner {
                         && node.isPhysical
                     ) {
                         VariableNameRuleHandler.handleListNameRule(node, context)
-                    } else if ((
-                                variableType.canonicalText.startsWith("java.util.HashMap")
-                                        || variableType.canonicalText.startsWith("java.util.Map"))
+                    } else if ((variableType.canonicalText.startsWith("java.util.HashMap")
+                                || variableType.canonicalText.startsWith("java.util.Map"))
                         && node.isPhysical
                     ) {
                         VariableNameRuleHandler.handleMapNameRule(node, context)
+                    } else if ((variableType.canonicalText.startsWith("androidx.lifecycle.MutableLiveData")
+                                || variableType.canonicalText.startsWith("androidx.lifecycle.LiveData"))
+                        && node.isPhysical
+                    ) {
+                        VariableNameRuleHandler.handleLiveDataNameRule(node, context)
                     }
                 }
             }

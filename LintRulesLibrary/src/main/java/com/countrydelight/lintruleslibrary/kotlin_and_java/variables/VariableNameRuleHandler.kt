@@ -55,6 +55,24 @@ object VariableNameRuleHandler {
 
 
     /**
+     * Handles the naming rule for LiveData variables.
+     *
+     * @param node the UVariable representing the LiveData variable
+     * @param context the Java context
+     */
+    fun handleLiveDataNameRule(node: UVariable, context: JavaContext) {
+        if (node.name?.endsWith("LiveData") == false) {
+            context.report(
+                VariableNameIssueUtils.MapNameIssue,
+                node as UElement,
+                context.getLocation(node as UElement),
+                VariableNameIssueUtils.LIVE_DATA_NAME_ISSUE_TEXT
+            )
+        }
+    }
+
+
+    /**
      * Handles the rule for variable names ending with "List".
      * @param node The UVariable node representing the variable to inspect.
      * @param context The JavaContext providing the inspection context.
