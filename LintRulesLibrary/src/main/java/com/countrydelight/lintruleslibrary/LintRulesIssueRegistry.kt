@@ -6,7 +6,7 @@ import com.android.tools.lint.detector.api.Issue
 import com.countrydelight.lintruleslibrary.kotlin_and_java.classes.ClassesNameIssueUtils
 import com.countrydelight.lintruleslibrary.kotlin_and_java.files.FileNameIssueUtils
 import com.countrydelight.lintruleslibrary.kotlin_and_java.variables.VariableNameIssueUtils
-import com.countrydelight.lintruleslibrary.xml.layout.XMLLayoutIssueUtils
+import com.countrydelight.lintruleslibrary.xml.layout.LayoutIssueUtils
 
 class LintRulesIssueRegistry : IssueRegistry() {
     override val issues: List<Issue>
@@ -36,8 +36,8 @@ class LintRulesIssueRegistry : IssueRegistry() {
                 FileNameIssueUtils.PackageNameIssue,
                 // xml
                 // layout
-                XMLLayoutIssueUtils.IdNameIssue,
-                XMLLayoutIssueUtils.LayoutFileNameRule
+                LayoutIssueUtils.IdNameIssue,
+                LayoutIssueUtils.LayoutFileNameRule
             )
         }
     override val api: Int
