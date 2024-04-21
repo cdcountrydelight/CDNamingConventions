@@ -36,7 +36,8 @@ class LintRulesIssueRegistry : IssueRegistry() {
                 FileNameIssueUtils.PackageNameIssue,
                 // xml
                 // layout
-                XMLLayoutIssueUtils.IdNameIssue
+                XMLLayoutIssueUtils.IdNameIssue,
+                XMLLayoutIssueUtils.LayoutFileNameRule
             )
         }
     override val api: Int
