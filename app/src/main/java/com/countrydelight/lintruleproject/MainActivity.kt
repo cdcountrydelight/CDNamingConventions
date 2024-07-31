@@ -13,12 +13,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.countrydelight.lintruleproject.ui.theme.LintRuleProjectTheme
 
 class MainActivity : ComponentActivity() {
-    private val hello = "ndnd"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            sayHello()
             LintRuleProjectTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(
@@ -31,9 +29,6 @@ class MainActivity : ComponentActivity() {
         }
     }
 
-    fun sayHello() {
-        println(hello.length)
-    }
 }
 
 @Composable
