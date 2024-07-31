@@ -37,6 +37,7 @@ class LintRulesIssueRegistry : IssueRegistry() {
                 ClassesNameIssueUtils.InterfaceImplementationNameIssue,
                 //functions
                 FunctionsIssueUtils.FunctionCommentIssue,
+                FunctionsIssueUtils.FindViewByIdIssue,
                 //package
                 FileNameIssueUtils.PackageNameIssue,
                 // xml

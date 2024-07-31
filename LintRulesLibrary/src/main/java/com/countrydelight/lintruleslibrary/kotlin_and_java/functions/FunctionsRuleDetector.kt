@@ -16,13 +16,19 @@ class FunctionsRuleDetector : Detector(), Detector.UastScanner {
         return object : UElementHandler() {
 
             override fun visitMethod(node: UMethod) {
-                if (node.comments.isEmpty()
-                    && !node.isConstructor
-                    && !node.text.contains("override")
-                    && !node.annotations.any { it.text.contains("Override") }
-                ) {
-                    FunctionsRuleHandler.handleFunctionCommentRule(node, context)
+                if (!node.isConstructor) {
+                    val notHasComments =
+                        node.comments.isEmpty() || node.comments.all { it.text.isBlank() }
+                    if (notHasComments
+                        && !node.text.contains("override")
+                        && !node.annotations.any { it.text.contains("Override") }
+                    ) {
+                        FunctionsRuleHandler.handleFunctionCommentRule(node, context)
+                    } else if (node.text.contains("findViewById")) {
+                        FunctionsRuleHandler.handleFindViewByIdRule(node, context)
+                    }
                 }
+
             }
         }
     }

@@ -19,4 +19,16 @@ object FunctionsIssueUtils {
         Severity.WARNING,
         Implementation(FunctionsRuleDetector::class.java, Scope.JAVA_FILE_SCOPE)
     )
+
+    const val FIND_VIEW_BY_ID_ISSUE_TEXT =
+        "Using findViewById is discouraged. Use ViewBinding/DataBinding instead."
+    val FindViewByIdIssue = Issue.create(
+        "FindViewByIdRule",
+        FIND_VIEW_BY_ID_ISSUE_TEXT,
+        FIND_VIEW_BY_ID_ISSUE_TEXT,
+        Category.CORRECTNESS,
+        6,
+        Severity.WARNING,
+        Implementation(FunctionsRuleDetector::class.java, Scope.JAVA_FILE_SCOPE)
+    )
 }

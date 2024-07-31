@@ -15,4 +15,13 @@ object FunctionsRuleHandler {
         )
 
     }
+
+    fun handleFindViewByIdRule(node: UMethod, context: JavaContext) {
+        context.report(
+            FunctionsIssueUtils.FindViewByIdIssue,
+            node,
+            context.getLocation(node as UElement),
+            FunctionsIssueUtils.FIND_VIEW_BY_ID_ISSUE_TEXT
+        )
+    }
 }
