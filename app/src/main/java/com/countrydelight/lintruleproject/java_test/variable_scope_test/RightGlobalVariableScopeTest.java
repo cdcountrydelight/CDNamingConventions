@@ -1,6 +1,6 @@
-package com.countrydelight.lintruleproject.java_test.variable_scope;
+package com.countrydelight.lintruleproject.java_test.variable_scope_test;
 
-public class RightGlobalVariableScope {
+public class RightGlobalVariableScopeTest {
 
     private final String rightGlobalVariableScope = "right_scope";
 

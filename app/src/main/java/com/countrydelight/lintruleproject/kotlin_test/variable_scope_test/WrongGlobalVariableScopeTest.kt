@@ -1,6 +1,6 @@
-package com.countrydelight.lintruleproject.kotlin_test.variable_scope
+package com.countrydelight.lintruleproject.kotlin_test.variable_scope_test
 
-class WrongGlobalVariableScope {
+class WrongGlobalVariableScopeTest {
 
     private var wrongGlobalVariableScope = "wrong_scope"
 

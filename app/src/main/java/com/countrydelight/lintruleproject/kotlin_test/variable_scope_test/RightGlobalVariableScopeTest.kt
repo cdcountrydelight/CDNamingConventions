@@ -1,6 +1,6 @@
-package com.countrydelight.lintruleproject.kotlin_test.variable_scope
+package com.countrydelight.lintruleproject.kotlin_test.variable_scope_test
 
-class RightGlobalVariableScope {
+class RightGlobalVariableScopeTest {
 
     private var rightGlobalVariableScope = "right_scope"
 
