@@ -4,7 +4,14 @@ import com.android.tools.lint.client.api.UElementHandler
 import com.android.tools.lint.detector.api.Detector
 import com.android.tools.lint.detector.api.JavaContext
 import org.jetbrains.uast.UElement
+import org.jetbrains.uast.UField
+import org.jetbrains.uast.UFile
+import org.jetbrains.uast.UMethod
+import org.jetbrains.uast.UReferenceExpression
+import org.jetbrains.uast.USimpleNameReferenceExpression
 import org.jetbrains.uast.UVariable
+import org.jetbrains.uast.textRange
+import org.jetbrains.uast.visitor.AbstractUastVisitor
 
 class VariableNameRuleDetector : Detector(), Detector.UastScanner {
 
@@ -42,10 +49,56 @@ class VariableNameRuleDetector : Detector(), Detector.UastScanner {
                         && node.isPhysical
                     ) {
                         VariableNameRuleHandler.handleLiveDataNameRule(node, context)
+                    } else if (node is UField) {
+                        val references = findReferencesOfVariable(context.uastFile, node)
+                        if (references.isNotEmpty()) {
+                            val containingMethods =
+                                references.mapNotNull { findContainingMethodOfVariable(it) }
+                                    .distinct()
+                            if (containingMethods.size == 1 && references.all {
+                                    val startOffset = it.textRange?.startOffset
+                                    if (startOffset != null) {
+                                        startOffset > node.textRange.endOffset
+                                    } else true
+                                }) {
+                                val methodName = containingMethods.first().name
+                                VariableNameRuleHandler.handleGlobalVariableNameRule(
+                                    node,
+                                    context,
+                                    methodName
+                                )
+                            }
+
+                        }
                     }
                 }
             }
+
         }
+    }
+
+    private fun findReferencesOfVariable(
+        uFile: UFile?,
+        variable: UVariable
+    ): List<USimpleNameReferenceExpression> {
+        val references = mutableListOf<USimpleNameReferenceExpression>()
+        uFile?.accept(object : AbstractUastVisitor() {
+            override fun visitSimpleNameReferenceExpression(node: USimpleNameReferenceExpression): Boolean {
+                if (node.resolvedName == variable.name) {
+                    references.add(node)
+                }
+                return super.visitSimpleNameReferenceExpression(node)
+            }
+        })
+        return references
+    }
+
+    private fun findContainingMethodOfVariable(reference: UReferenceExpression): UMethod? {
+        var parent = reference.uastParent
+        while (parent != null && parent !is UMethod) {
+            parent = parent.uastParent
+        }
+        return parent as? UMethod
     }
 
 }

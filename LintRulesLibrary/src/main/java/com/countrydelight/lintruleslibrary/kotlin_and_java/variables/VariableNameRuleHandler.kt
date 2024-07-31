@@ -72,6 +72,16 @@ object VariableNameRuleHandler {
     }
 
 
+    fun handleGlobalVariableNameRule(node: UVariable, context: JavaContext, functionName: String) {
+        context.report(
+            VariableNameIssueUtils.GlobalVariableIssue,
+            node as UElement,
+            context.getLocation(node as UElement),
+            "Global variable can be declared locally inside function: $functionName"
+        )
+    }
+
+
     /**
      * Handles the rule for variable names ending with "List".
      * @param node The UVariable node representing the variable to inspect.

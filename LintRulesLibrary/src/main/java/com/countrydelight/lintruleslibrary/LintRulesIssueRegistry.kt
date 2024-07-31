@@ -19,6 +19,7 @@ class LintRulesIssueRegistry : IssueRegistry() {
                 VariableNameIssueUtils.StateNameIssue,
                 VariableNameIssueUtils.StateFlowNameIssue,
                 VariableNameIssueUtils.LiveDataNameIssue,
+                VariableNameIssueUtils.GlobalVariableIssue,
                 //classes
                 ClassesNameIssueUtils.DatabaseNameIssue,
                 ClassesNameIssueUtils.DaoNameIssue,

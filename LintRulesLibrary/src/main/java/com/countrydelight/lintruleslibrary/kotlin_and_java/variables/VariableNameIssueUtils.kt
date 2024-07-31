@@ -62,4 +62,15 @@ object VariableNameIssueUtils {
         Severity.WARNING,
         Implementation(VariableNameRuleDetector::class.java, Scope.JAVA_FILE_SCOPE)
     )
+
+    private const val GLOBAL_VARIABLE_ISSUE_TEXT = "Global variable can be declared locally"
+    val GlobalVariableIssue = Issue.create(
+        id = "GlobalVariableRule",
+        briefDescription = GLOBAL_VARIABLE_ISSUE_TEXT,
+        explanation = GLOBAL_VARIABLE_ISSUE_TEXT,
+        category = Category.CORRECTNESS,
+        priority = 6,
+        severity = Severity.WARNING,
+        implementation = Implementation(VariableNameRuleDetector::class.java, Scope.JAVA_FILE_SCOPE)
+    )
 }
