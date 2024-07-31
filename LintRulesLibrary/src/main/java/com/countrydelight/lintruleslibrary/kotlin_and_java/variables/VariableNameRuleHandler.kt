@@ -77,7 +77,7 @@ object VariableNameRuleHandler {
             VariableNameIssueUtils.GlobalVariableIssue,
             node as UElement,
             context.getLocation(node as UElement),
-            "Global variable can be declared locally inside function: $functionName"
+            "Global variable can be declared locally inside: $functionName()"
         )
     }
 

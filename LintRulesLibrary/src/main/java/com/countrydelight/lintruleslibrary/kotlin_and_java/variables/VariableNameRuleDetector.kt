@@ -77,6 +77,7 @@ class VariableNameRuleDetector : Detector(), Detector.UastScanner {
         }
     }
 
+
     private fun findReferencesOfVariable(
         uFile: UFile?,
         variable: UVariable

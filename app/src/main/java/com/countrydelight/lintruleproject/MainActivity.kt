@@ -31,7 +31,7 @@ class MainActivity : ComponentActivity() {
         }
     }
 
-    fun sayHello(){
+    fun sayHello() {
         println(hello.length)
     }
 }
