@@ -11,7 +11,7 @@ java {
 }
 
 dependencies {
-    compileOnly("com.android.tools.lint:lint-api:31.4.0")
+    compileOnly("com.android.tools.lint:lint-api:31.5.1")
 }
 
 afterEvaluate {
@@ -23,7 +23,7 @@ afterEvaluate {
                 }
                 groupId = "com.github.cdcountrydelight"
                 artifactId = "CDNamingConventions"
-                version = "1.0.4"
+                version = "1.0.5"
                 from(components["java"])
             }
         }
