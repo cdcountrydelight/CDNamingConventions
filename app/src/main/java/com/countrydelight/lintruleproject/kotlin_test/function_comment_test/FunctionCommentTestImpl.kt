@@ -20,3 +20,14 @@ class FunctionCommentTestImpl : IFunctionCommentTest {
 
 
 }
+
+enum class TestingEnum {
+    First,
+    Second,
+    Third
+}
+
+data class TestingDataClass(
+    val first: String,
+    val second: String,
+)

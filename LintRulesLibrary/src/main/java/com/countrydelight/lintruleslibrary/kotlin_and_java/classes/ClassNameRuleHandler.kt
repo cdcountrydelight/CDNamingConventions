@@ -187,13 +187,13 @@ internal object ClassNameRuleHandler {
         val className = node.name
         var showInterfaceImplementationWarning = true
         superClasses.forEach {
-            val superClassName = it.name ?: return
-            if (superClassName.endsWith("Activity")
-                || superClassName.endsWith("BroadcastReceiver")
-                || superClassName.endsWith("ViewModel")
-                || superClassName.endsWith("Fragment")
-                || superClassName.endsWith("Service")
-                || superClassName.endsWith("Adapter")
+            val superClassName = it.name
+            if (superClassName != null && (superClassName.endsWith("Activity")
+                        || superClassName.endsWith("BroadcastReceiver")
+                        || superClassName.endsWith("ViewModel")
+                        || superClassName.endsWith("Fragment")
+                        || superClassName.endsWith("Service")
+                        || superClassName.endsWith("Adapter"))
             ) {
                 showInterfaceImplementationWarning = false
             }

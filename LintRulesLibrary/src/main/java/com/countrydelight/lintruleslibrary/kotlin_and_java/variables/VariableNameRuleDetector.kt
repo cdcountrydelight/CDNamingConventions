@@ -23,7 +23,7 @@ class VariableNameRuleDetector : Detector(), Detector.UastScanner {
         return object : UElementHandler() {
             override fun visitVariable(node: UVariable) {
                 val variableType = node.type
-                if (!node.text.contains("fun") && !node.isStatic) {
+                if (node.text?.contains("fun") == false && !node.isStatic) {
                     if ((variableType.canonicalText.startsWith("kotlinx.coroutines.flow.MutableStateFlow")
                                 || variableType.canonicalText.startsWith("kotlinx.coroutines.flow.StateFlow"))
                         && node.isPhysical
