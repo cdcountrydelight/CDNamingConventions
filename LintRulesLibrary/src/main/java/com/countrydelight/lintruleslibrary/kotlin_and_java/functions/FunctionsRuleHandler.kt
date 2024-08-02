@@ -6,6 +6,12 @@ import org.jetbrains.uast.UMethod
 
 object FunctionsRuleHandler {
 
+    /**
+     * This function handles the function comment rule in a UMethod node and reports an issue if the rule is violated.
+     *
+     * @param node The UMethod node that is being analyzed.
+     * @param context The JavaContext which provides context for the analysis, such as reporting issues.
+     */
     fun handleFunctionCommentRule(node: UMethod, context: JavaContext) {
         context.report(
             FunctionsIssueUtils.FunctionCommentIssue,
@@ -16,6 +22,13 @@ object FunctionsRuleHandler {
 
     }
 
+
+    /**
+     * This function handles the findViewById rule in a UMethod node and reports an issue if the rule is violated.
+     *
+     * @param node The UMethod node that is being analyzed.
+     * @param context The JavaContext which provides context for the analysis, such as reporting issues.
+     */
     fun handleFindViewByIdRule(node: UMethod, context: JavaContext) {
         context.report(
             FunctionsIssueUtils.FindViewByIdIssue,

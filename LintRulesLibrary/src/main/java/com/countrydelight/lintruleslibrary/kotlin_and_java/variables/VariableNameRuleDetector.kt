@@ -77,7 +77,13 @@ class VariableNameRuleDetector : Detector(), Detector.UastScanner {
         }
     }
 
-
+    /**
+     * This function finds all references of a given variable in a UFile.
+     *
+     * @param uFile The UFile to search for references. Can be null.
+     * @param variable The UVariable representing the variable to find references for.
+     * @return A list of USimpleNameReferenceExpression instances that reference the variable.
+     */
     private fun findReferencesOfVariable(
         uFile: UFile?,
         variable: UVariable
@@ -94,6 +100,12 @@ class VariableNameRuleDetector : Detector(), Detector.UastScanner {
         return references
     }
 
+    /**
+     * This function finds the containing method of a given variable reference.
+     *
+     * @param reference The UReferenceExpression representing the variable reference.
+     * @return The UMethod containing the variable reference, or null if not found.
+     */
     private fun findContainingMethodOfVariable(reference: UReferenceExpression): UMethod? {
         var parent = reference.uastParent
         while (parent != null && parent !is UMethod) {
