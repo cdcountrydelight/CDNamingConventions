@@ -20,7 +20,9 @@ class FunctionsRuleDetector : Detector(), Detector.UastScanner {
                 val nodeParent = node.uastParent as? UClass
                 val isEnumClass = nodeParent?.isEnum ?: false
                 val isDataClass = nodeParent?.text?.contains("data") ?: false
-                if (!node.isConstructor && !isDataClass && !isEnumClass) {
+                val isAnyVariable =
+                    node.text?.contains("var") == true || node.text?.contains("val") == true
+                if (!node.isConstructor && !isDataClass && !isEnumClass && !isAnyVariable) {
                     val notHasComments =
                         node.comments.isEmpty() || node.comments.all { it.text.isBlank() }
                     if (notHasComments

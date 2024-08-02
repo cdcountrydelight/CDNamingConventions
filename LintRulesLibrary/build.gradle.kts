@@ -11,7 +11,7 @@ java {
 }
 
 dependencies {
-    compileOnly("com.android.tools.lint:lint-api:31.5.1")
+    compileOnly(libs.lint.api)
 }
 
 afterEvaluate {
