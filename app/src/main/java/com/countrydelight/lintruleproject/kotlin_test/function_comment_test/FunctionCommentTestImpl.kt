@@ -1,6 +1,10 @@
 package com.countrydelight.lintruleproject.kotlin_test.function_comment_test
 
+import androidx.compose.runtime.mutableStateOf
+
 class FunctionCommentTestImpl : IFunctionCommentTest {
+
+    val testCommentState = mutableStateOf<String>("")
 
 
     override fun testComment() {

@@ -11,7 +11,7 @@ object VariableNameRuleHandler {
      * @param context The JavaContext providing the inspection context.
      */
     fun handleStateFlowNameRule(node: UVariable, context: JavaContext) {
-        if (node.name?.endsWith("StateFlow") == false) {
+        if (isValidName(node) && node.name?.endsWith("StateFlow") == false) {
             context.report(
                 VariableNameIssueUtils.StateFlowNameIssue,
                 node as UElement,
@@ -27,7 +27,7 @@ object VariableNameRuleHandler {
      * @param context The JavaContext providing the inspection context.
      */
     fun handleStateNameRule(node: UVariable, context: JavaContext) {
-        if (node.name?.endsWith("State") == false) {
+        if (isValidName(node) && node.name?.endsWith("State") == false) {
             context.report(
                 VariableNameIssueUtils.StateNameIssue,
                 node as UElement,
@@ -43,7 +43,7 @@ object VariableNameRuleHandler {
      * @param context The JavaContext providing the inspection context.
      */
     fun handleMapNameRule(node: UVariable, context: JavaContext) {
-        if (node.name?.endsWith("Map") == false) {
+        if (isValidName(node) && node.name?.endsWith("Map") == false) {
             context.report(
                 VariableNameIssueUtils.MapNameIssue,
                 node as UElement,
@@ -61,7 +61,7 @@ object VariableNameRuleHandler {
      * @param context the Java context
      */
     fun handleLiveDataNameRule(node: UVariable, context: JavaContext) {
-        if (node.name?.endsWith("LiveData") == false) {
+        if (isValidName(node) && node.name?.endsWith("LiveData") == false) {
             context.report(
                 VariableNameIssueUtils.MapNameIssue,
                 node as UElement,
@@ -72,6 +72,31 @@ object VariableNameRuleHandler {
     }
 
 
+    /**
+     * Handles the rule for variable names ending with "List".
+     * @param node The UVariable node representing the variable to inspect.
+     * @param context The JavaContext providing the inspection context.
+     */
+    fun handleListNameRule(node: UVariable, context: JavaContext) {
+        if (isValidName(node) && node.name?.endsWith("List") == false) {
+            context.report(
+                VariableNameIssueUtils.ListNameIssue,
+                node as UElement,
+                context.getLocation(node as UElement),
+                VariableNameIssueUtils.LIST_NAME_ISSUE_TEXT
+            )
+        }
+    }
+
+    /**
+     * Handles the rule for reporting global variable name issues.
+     *
+     * This function reports an issue if a global variable is found that can be declared locally inside a function.
+     *
+     * @param node The variable node to check.
+     * @param context The context in which the check is performed.
+     * @param functionName The name of the function where the variable can be declared locally.
+     */
     fun handleGlobalVariableNameRule(node: UVariable, context: JavaContext, functionName: String) {
         context.report(
             VariableNameIssueUtils.GlobalVariableIssue,
@@ -83,18 +108,14 @@ object VariableNameRuleHandler {
 
 
     /**
-     * Handles the rule for variable names ending with "List".
-     * @param node The UVariable node representing the variable to inspect.
-     * @param context The JavaContext providing the inspection context.
+     * Checks if the given variable node has a valid name.
+     *
+     * This function ensures that the name of the variable node is not null and does not contain the substring "<set-?>".
+     *
+     * @param node The variable node to check.
+     * @return `true` if the variable node's name is not null and does not contain "<set-?>"; `false` otherwise.
      */
-    fun handleListNameRule(node: UVariable, context: JavaContext) {
-        if (node.name?.endsWith("List") == false) {
-            context.report(
-                VariableNameIssueUtils.ListNameIssue,
-                node as UElement,
-                context.getLocation(node as UElement),
-                VariableNameIssueUtils.LIST_NAME_ISSUE_TEXT
-            )
-        }
+    private fun isValidName(node: UVariable): Boolean {
+        return node.name != null && node.name?.contains("<set-?>") == false
     }
 }

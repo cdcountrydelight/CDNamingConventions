@@ -13,4 +13,26 @@ class ListVariableTest {
     val wrongListVariable = listOf<String>()
 
     val rightList = listOf<String>()
+
+    lateinit var wrongLateInit: List<String>
+
+    val rightPublicList: List<String>? = null
+
+
+    // checks list rule inside function
+    fun checkListRule() {
+        var hello = arrayListOf<String>()
+    }
+
+}
+
+object ListVariableTestObjectClass {
+
+    val rightList = listOf<String>()
+
+    val wrongListVariable = arrayListOf<String>()
+
+    var wrongPublicListVariable = arrayListOf<String>()
+
+    var rightPublicList = arrayListOf<String>()
 }

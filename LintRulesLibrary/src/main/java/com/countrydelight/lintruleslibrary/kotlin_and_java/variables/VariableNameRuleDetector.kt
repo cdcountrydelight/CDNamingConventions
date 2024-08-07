@@ -23,53 +23,49 @@ class VariableNameRuleDetector : Detector(), Detector.UastScanner {
         return object : UElementHandler() {
             override fun visitVariable(node: UVariable) {
                 val variableType = node.type
-                if (node.text?.contains("fun") == false && !node.isStatic) {
+                if (!node.isStatic) {
                     if ((variableType.canonicalText.startsWith("kotlinx.coroutines.flow.MutableStateFlow")
                                 || variableType.canonicalText.startsWith("kotlinx.coroutines.flow.StateFlow"))
-                        && node.isPhysical
                     ) {
                         VariableNameRuleHandler.handleStateFlowNameRule(node, context)
                     } else if ((variableType.canonicalText.startsWith("androidx.compose.runtime.MutableState")
                                 || variableType.canonicalText.startsWith("androidx.compose.runtime.State"))
-                        && node.isPhysical
                     ) {
                         VariableNameRuleHandler.handleStateNameRule(node, context)
                     } else if ((variableType.canonicalText.startsWith("java.util.List")
                                 || variableType.canonicalText.startsWith("java.util.ArrayList"))
-                        && node.isPhysical
                     ) {
                         VariableNameRuleHandler.handleListNameRule(node, context)
                     } else if ((variableType.canonicalText.startsWith("java.util.HashMap")
                                 || variableType.canonicalText.startsWith("java.util.Map"))
-                        && node.isPhysical
                     ) {
                         VariableNameRuleHandler.handleMapNameRule(node, context)
                     } else if ((variableType.canonicalText.startsWith("androidx.lifecycle.MutableLiveData")
                                 || variableType.canonicalText.startsWith("androidx.lifecycle.LiveData"))
-                        && node.isPhysical
                     ) {
                         VariableNameRuleHandler.handleLiveDataNameRule(node, context)
-                    } else if (node is UField) {
-                        val references = findReferencesOfVariable(context.uastFile, node)
-                        if (references.isNotEmpty()) {
-                            val containingMethods =
-                                references.mapNotNull { findContainingMethodOfVariable(it) }
-                                    .distinct()
-                            if (containingMethods.size == 1 && references.all {
-                                    val startOffset = it.textRange?.startOffset
-                                    if (startOffset != null) {
-                                        startOffset > node.textRange.endOffset
-                                    } else true
-                                }) {
-                                val methodName = containingMethods.first().name
-                                VariableNameRuleHandler.handleGlobalVariableNameRule(
-                                    node,
-                                    context,
-                                    methodName
-                                )
-                            }
-
+                    }
+                }
+                if (node is UField) {
+                    val references = findReferencesOfVariable(context.uastFile, node)
+                    if (references.isNotEmpty()) {
+                        val containingMethods =
+                            references.mapNotNull { findContainingMethodOfVariable(it) }
+                                .distinct()
+                        if (containingMethods.size == 1 && references.all {
+                                val startOffset = it.textRange?.startOffset
+                                if (startOffset != null) {
+                                    startOffset > node.textRange.endOffset
+                                } else true
+                            }) {
+                            val methodName = containingMethods.first().name
+                            VariableNameRuleHandler.handleGlobalVariableNameRule(
+                                node,
+                                context,
+                                methodName
+                            )
                         }
+
                     }
                 }
             }
