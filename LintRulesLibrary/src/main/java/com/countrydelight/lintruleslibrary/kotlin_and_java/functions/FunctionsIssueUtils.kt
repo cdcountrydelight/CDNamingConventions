@@ -8,13 +8,16 @@ import com.android.tools.lint.detector.api.Severity
 
 object FunctionsIssueUtils {
 
+    private val functionsRuleCategory = Category(null, "Functions Rule", 99)
+
+
     const val FUNCTION_COMMENT_ISSUE_TEXT =
         "Every function must have a comment"
     val FunctionCommentIssue = Issue.create(
         "FunctionCommentRule",
         FUNCTION_COMMENT_ISSUE_TEXT,
         FUNCTION_COMMENT_ISSUE_TEXT,
-        Category.CORRECTNESS,
+        functionsRuleCategory,
         6,
         Severity.WARNING,
         Implementation(FunctionsRuleDetector::class.java, Scope.JAVA_FILE_SCOPE)
@@ -26,7 +29,7 @@ object FunctionsIssueUtils {
         "FindViewByIdRule",
         FIND_VIEW_BY_ID_ISSUE_TEXT,
         FIND_VIEW_BY_ID_ISSUE_TEXT,
-        Category.CORRECTNESS,
+        functionsRuleCategory,
         6,
         Severity.WARNING,
         Implementation(FunctionsRuleDetector::class.java, Scope.JAVA_FILE_SCOPE)

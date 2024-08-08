@@ -7,13 +7,17 @@ import com.android.tools.lint.detector.api.Scope
 import com.android.tools.lint.detector.api.Severity
 
 object VariableNameIssueUtils {
+
+    private val variableRuleCategory = Category(null, "Variable Rule", 98)
+
+
     const val STATE_FLOW_NAME_ISSUE_TEXT =
         "variables of type StateFlow must end with StateFlow"
     val StateFlowNameIssue = Issue.create(
         "StateFlowNameRule",
         STATE_FLOW_NAME_ISSUE_TEXT,
         STATE_FLOW_NAME_ISSUE_TEXT,
-        Category.CORRECTNESS,
+        variableRuleCategory,
         6,
         Severity.WARNING,
         Implementation(VariableNameRuleDetector::class.java, Scope.JAVA_FILE_SCOPE)
@@ -24,7 +28,7 @@ object VariableNameIssueUtils {
         "StateNameRule",
         STATE_NAME_ISSUE_TEXT,
         STATE_NAME_ISSUE_TEXT,
-        Category.CORRECTNESS,
+        variableRuleCategory,
         6,
         Severity.WARNING,
         Implementation(VariableNameRuleDetector::class.java, Scope.JAVA_FILE_SCOPE)
@@ -35,7 +39,7 @@ object VariableNameIssueUtils {
         "ListNameRule",
         LIST_NAME_ISSUE_TEXT,
         LIST_NAME_ISSUE_TEXT,
-        Category.CORRECTNESS,
+        variableRuleCategory,
         6,
         Severity.WARNING,
         Implementation(VariableNameRuleDetector::class.java, Scope.JAVA_FILE_SCOPE)
@@ -46,7 +50,7 @@ object VariableNameIssueUtils {
         "MapNameRule",
         MAP_NAME_ISSUE_TEXT,
         MAP_NAME_ISSUE_TEXT,
-        Category.CORRECTNESS,
+        variableRuleCategory,
         6,
         Severity.WARNING,
         Implementation(VariableNameRuleDetector::class.java, Scope.JAVA_FILE_SCOPE)
@@ -57,7 +61,7 @@ object VariableNameIssueUtils {
         "LiveDataNameRule",
         LIVE_DATA_NAME_ISSUE_TEXT,
         LIVE_DATA_NAME_ISSUE_TEXT,
-        Category.CORRECTNESS,
+        variableRuleCategory,
         6,
         Severity.WARNING,
         Implementation(VariableNameRuleDetector::class.java, Scope.JAVA_FILE_SCOPE)
@@ -68,7 +72,7 @@ object VariableNameIssueUtils {
         id = "GlobalVariableRule",
         briefDescription = GLOBAL_VARIABLE_ISSUE_TEXT,
         explanation = GLOBAL_VARIABLE_ISSUE_TEXT,
-        category = Category.CORRECTNESS,
+        category = variableRuleCategory,
         priority = 6,
         severity = Severity.WARNING,
         implementation = Implementation(VariableNameRuleDetector::class.java, Scope.JAVA_FILE_SCOPE)

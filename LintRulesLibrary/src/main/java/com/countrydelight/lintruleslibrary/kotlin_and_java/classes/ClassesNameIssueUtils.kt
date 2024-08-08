@@ -7,12 +7,15 @@ import com.android.tools.lint.detector.api.Scope
 import com.android.tools.lint.detector.api.Severity
 
 object ClassesNameIssueUtils {
+
+    private val classRuleCategory = Category(null, "Class Rule", 100)
+
     const val INTERFACE_NAME_ISSUE_TEXT = "Interface name must start with I"
     val InterfaceNameIssue = Issue.create(
         "InterfaceNameRule",
         INTERFACE_NAME_ISSUE_TEXT,
         INTERFACE_NAME_ISSUE_TEXT,
-        Category.CORRECTNESS,
+        classRuleCategory,
         6,
         Severity.WARNING,
         Implementation(ClassNameRuleDetector::class.java, Scope.JAVA_FILE_SCOPE)
@@ -23,7 +26,7 @@ object ClassesNameIssueUtils {
         "ActivityNameRule",
         ACTIVITY_NAME_ISSUE_TEXT,
         ACTIVITY_NAME_ISSUE_TEXT,
-        Category.CORRECTNESS,
+        classRuleCategory,
         6,
         Severity.WARNING,
         Implementation(ClassNameRuleDetector::class.java, Scope.JAVA_FILE_SCOPE)
@@ -34,7 +37,7 @@ object ClassesNameIssueUtils {
         "ApplicationNameRule",
         APPLICATION_NAME_ISSUE_TEXT,
         APPLICATION_NAME_ISSUE_TEXT,
-        Category.CORRECTNESS,
+        classRuleCategory,
         6,
         Severity.WARNING,
         Implementation(ClassNameRuleDetector::class.java, Scope.JAVA_FILE_SCOPE)
@@ -45,7 +48,7 @@ object ClassesNameIssueUtils {
         "FragmentNameRule",
         FRAGMENT_NAME_ISSUE_TEXT,
         FRAGMENT_NAME_ISSUE_TEXT,
-        Category.CORRECTNESS,
+        classRuleCategory,
         6,
         Severity.WARNING,
         Implementation(ClassNameRuleDetector::class.java, Scope.JAVA_FILE_SCOPE)
@@ -56,7 +59,7 @@ object ClassesNameIssueUtils {
         "BroadcastReceiverNameRule",
         BROADCAST_RECEIVER_NAME_ISSUE_TEXT,
         BROADCAST_RECEIVER_NAME_ISSUE_TEXT,
-        Category.CORRECTNESS,
+        classRuleCategory,
         6,
         Severity.WARNING,
         Implementation(ClassNameRuleDetector::class.java, Scope.JAVA_FILE_SCOPE)
@@ -66,7 +69,7 @@ object ClassesNameIssueUtils {
         "ServiceNameRule",
         SERVICE_NAME_ISSUE_TEXT,
         SERVICE_NAME_ISSUE_TEXT,
-        Category.CORRECTNESS,
+        classRuleCategory,
         6,
         Severity.WARNING,
         Implementation(ClassNameRuleDetector::class.java, Scope.JAVA_FILE_SCOPE)
@@ -77,7 +80,7 @@ object ClassesNameIssueUtils {
         "WorkerNameRule",
         WORKER_NAME_ISSUE_TEXT,
         WORKER_NAME_ISSUE_TEXT,
-        Category.CORRECTNESS,
+        classRuleCategory,
         6,
         Severity.WARNING,
         Implementation(ClassNameRuleDetector::class.java, Scope.JAVA_FILE_SCOPE)
@@ -88,7 +91,7 @@ object ClassesNameIssueUtils {
         "DatabaseNameRule",
         DATABASE_NAME_ISSUE_TEXT,
         DATABASE_NAME_ISSUE_TEXT,
-        Category.CORRECTNESS,
+        classRuleCategory,
         6,
         Severity.WARNING,
         Implementation(ClassNameRuleDetector::class.java, Scope.JAVA_FILE_SCOPE)
@@ -99,7 +102,7 @@ object ClassesNameIssueUtils {
         "ViewModelNameRule",
         VIEW_MODEL_NAME_ISSUE_TEXT,
         VIEW_MODEL_NAME_ISSUE_TEXT,
-        Category.CORRECTNESS,
+        classRuleCategory,
         6,
         Severity.WARNING,
         Implementation(ClassNameRuleDetector::class.java, Scope.JAVA_FILE_SCOPE)
@@ -110,7 +113,7 @@ object ClassesNameIssueUtils {
         "EnumNameRule",
         ENUM_NAME_ISSUE_TEXT,
         ENUM_NAME_ISSUE_TEXT,
-        Category.CORRECTNESS,
+        classRuleCategory,
         6,
         Severity.WARNING,
         Implementation(ClassNameRuleDetector::class.java, Scope.JAVA_FILE_SCOPE)
@@ -122,7 +125,7 @@ object ClassesNameIssueUtils {
         "InterfaceImplementationNameRule",
         "hello",
         "hello",
-        Category.CORRECTNESS,
+        classRuleCategory,
         6,
         Severity.WARNING,
         Implementation(ClassNameRuleDetector::class.java, Scope.JAVA_FILE_SCOPE)
@@ -135,7 +138,7 @@ object ClassesNameIssueUtils {
         "DaoNameRule",
         DAO_NAME_ISSUE_TEXT,
         DAO_NAME_ISSUE_TEXT,
-        Category.CORRECTNESS,
+        classRuleCategory,
         6,
         Severity.WARNING,
         Implementation(ClassNameRuleDetector::class.java, Scope.JAVA_FILE_SCOPE)
@@ -148,7 +151,7 @@ object ClassesNameIssueUtils {
         "EntityNameRule",
         ENTITY_NAME_ISSUE_TEXT,
         ENTITY_NAME_ISSUE_TEXT,
-        Category.CORRECTNESS,
+        classRuleCategory,
         6,
         Severity.WARNING,
         Implementation(ClassNameRuleDetector::class.java, Scope.JAVA_FILE_SCOPE)
