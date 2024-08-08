@@ -8,13 +8,15 @@ import com.android.tools.lint.detector.api.Severity
 
 object FileNameIssueUtils {
 
+    private val fileRuleCategory = Category(null, "File Rule", 101)
+
     const val PACKAGE_NAME_ISSUE_TEXT =
         "Package name must be in snake case format for eg:- user_detail"
     val PackageNameIssue = Issue.create(
         "PackageNameRule",
         PACKAGE_NAME_ISSUE_TEXT,
         PACKAGE_NAME_ISSUE_TEXT,
-        Category.CORRECTNESS,
+        fileRuleCategory,
         6,
         Severity.WARNING,
         Implementation(FileNameRuleDetector::class.java, Scope.JAVA_FILE_SCOPE)

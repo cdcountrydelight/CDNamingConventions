@@ -11,9 +11,6 @@ import org.w3c.dom.Element
 
 class LayoutRulesDetector : ResourceXmlDetector() {
 
-    companion object {
-
-    }
 
     override fun appliesTo(folderType: ResourceFolderType): Boolean {
         return folderType == ResourceFolderType.LAYOUT

@@ -5,6 +5,7 @@ import com.android.tools.lint.detector.api.CURRENT_API
 import com.android.tools.lint.detector.api.Issue
 import com.countrydelight.lintruleslibrary.kotlin_and_java.classes.ClassesNameIssueUtils
 import com.countrydelight.lintruleslibrary.kotlin_and_java.files.FileNameIssueUtils
+import com.countrydelight.lintruleslibrary.kotlin_and_java.functions.FunctionsIssueUtils
 import com.countrydelight.lintruleslibrary.kotlin_and_java.variables.VariableNameIssueUtils
 import com.countrydelight.lintruleslibrary.xml.layout.LayoutIssueUtils
 
@@ -19,6 +20,7 @@ class LintRulesIssueRegistry : IssueRegistry() {
                 VariableNameIssueUtils.StateNameIssue,
                 VariableNameIssueUtils.StateFlowNameIssue,
                 VariableNameIssueUtils.LiveDataNameIssue,
+                VariableNameIssueUtils.GlobalVariableIssue,
                 //classes
                 ClassesNameIssueUtils.DatabaseNameIssue,
                 ClassesNameIssueUtils.DaoNameIssue,
@@ -33,6 +35,9 @@ class LintRulesIssueRegistry : IssueRegistry() {
                 ClassesNameIssueUtils.ViewModelNameIssue,
                 ClassesNameIssueUtils.EnumNameIssue,
                 ClassesNameIssueUtils.InterfaceImplementationNameIssue,
+                //functions
+                FunctionsIssueUtils.FunctionCommentIssue,
+                FunctionsIssueUtils.FindViewByIdIssue,
                 //package
                 FileNameIssueUtils.PackageNameIssue,
                 // xml
