@@ -38,6 +38,7 @@ class LintRulesIssueRegistry : IssueRegistry() {
                 //functions
                 FunctionsIssueUtils.FunctionCommentIssue,
                 FunctionsIssueUtils.FindViewByIdIssue,
+                FunctionsIssueUtils.FunctionCommentIssue,
                 //package
                 FileNameIssueUtils.PackageNameIssue,
                 // xml

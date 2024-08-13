@@ -36,6 +36,11 @@ class FunctionsRuleDetector : Detector(), Detector.UastScanner {
                     if (node.text?.contains("findViewById") == true) {
                         FunctionsRuleHandler.handleFindViewByIdRule(node, context)
                     }
+                    val startLine = context.getLocation(node).start?.line
+                    val endLine = context.getLocation(node).end?.line
+                    if (startLine != null && endLine != null && endLine - startLine + 1 > 100) {
+                        FunctionsRuleHandler.handleFunctionMaxLengthRule(node, context)
+                    }
                 }
 
             }

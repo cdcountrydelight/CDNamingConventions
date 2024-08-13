@@ -37,4 +37,13 @@ object FunctionsRuleHandler {
             FunctionsIssueUtils.FIND_VIEW_BY_ID_ISSUE_TEXT
         )
     }
+
+    fun handleFunctionMaxLengthRule(node: UMethod, context: JavaContext) {
+        context.report(
+            FunctionsIssueUtils.FunctionMaxLengthIssue,
+            node,
+            context.getLocation(node as UElement),
+            FunctionsIssueUtils.FUNCTION_MAX_LENGTH_ISSUE_TEXT
+        )
+    }
 }
