@@ -34,4 +34,28 @@ object FunctionsIssueUtils {
         Severity.WARNING,
         Implementation(FunctionsRuleDetector::class.java, Scope.JAVA_FILE_SCOPE)
     )
+
+    const val FUNCTION_MAX_LENGTH_ISSUE_TEXT =
+        "Function length should not be greater than 100 line, try to break the function into smaller sub functions."
+    val FunctionMaxLengthIssue = Issue.create(
+        "FunctionMaxLengthRuleRule",
+        FUNCTION_MAX_LENGTH_ISSUE_TEXT,
+        FUNCTION_MAX_LENGTH_ISSUE_TEXT,
+        functionsRuleCategory,
+        6,
+        Severity.WARNING,
+        Implementation(FunctionsRuleDetector::class.java, Scope.JAVA_FILE_SCOPE)
+    )
+
+    const val FUNCTION_EXCEPTION_HANDLE_ISSUE_TEXT =
+        ""
+    val FunctionExceptionHandleIssue = Issue.create(
+        "FunctionExceptionHandleRule",
+        FUNCTION_EXCEPTION_HANDLE_ISSUE_TEXT,
+        FUNCTION_EXCEPTION_HANDLE_ISSUE_TEXT,
+        functionsRuleCategory,
+        6,
+        Severity.WARNING,
+        Implementation(FunctionsRuleDetector::class.java, Scope.JAVA_FILE_SCOPE)
+    )
 }

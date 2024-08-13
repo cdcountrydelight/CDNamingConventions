@@ -37,4 +37,29 @@ object FunctionsRuleHandler {
             FunctionsIssueUtils.FIND_VIEW_BY_ID_ISSUE_TEXT
         )
     }
+
+    fun handleFunctionMaxLengthRule(node: UMethod, context: JavaContext) {
+        context.report(
+            FunctionsIssueUtils.FunctionMaxLengthIssue,
+            node,
+            context.getLocation(node as UElement),
+            FunctionsIssueUtils.FUNCTION_MAX_LENGTH_ISSUE_TEXT
+        )
+    }
+
+    fun handleFunctionExceptionHandleRule(
+        node: UMethod,
+        context: JavaContext,
+        methodName: String?
+    ) {
+
+        context.report(
+            FunctionsIssueUtils.FunctionExceptionHandleIssue,
+            node,
+            context.getLocation(node as UElement),
+//            FunctionsIssueUtils.FUNCTION_EXCEPTION_HANDLE_ISSUE_TEXT + "\n" + node.throwsList.referencedTypes.joinToString { it.name } + "\n" + if (node.uastParent is UMethod) (node.uastParent as UMethod).throwsList
+//                ?: "" else "",
+            methodName ?: ""
+        )
+    }
 }

@@ -15,7 +15,6 @@ class FunctionsRuleDetector : Detector(), Detector.UastScanner {
 
     override fun createUastHandler(context: JavaContext): UElementHandler {
         return object : UElementHandler() {
-
             override fun visitMethod(node: UMethod) {
                 val nodeParent = node.uastParent as? UClass
                 val isEnumClass = nodeParent?.isEnum ?: false
@@ -36,8 +35,41 @@ class FunctionsRuleDetector : Detector(), Detector.UastScanner {
                     if (node.text?.contains("findViewById") == true) {
                         FunctionsRuleHandler.handleFindViewByIdRule(node, context)
                     }
+                    val startLine = context.getLocation(node).start?.line
+                    val endLine = context.getLocation(node).end?.line
+                    if (startLine != null && endLine != null && endLine - startLine + 1 > 100) {
+                        FunctionsRuleHandler.handleFunctionMaxLengthRule(node, context)
+                    }
+                   // val exceptionThrowList = node.throwsList.referencedTypes
+//                    if (exceptionThrowList.isNotEmpty()) {
+//                        node.uastBody?.accept(object : AbstractUastVisitor() {
+//                            override fun visitCallExpression(childNode: UCallExpression): Boolean {
+//                                FunctionsRuleHandler.handleFunctionExceptionHandleRule(
+//                                    node,
+//                                    context,
+//                                    childNode.methodName
+//                                )
+//
+////                                if (childNode is UTryExpression) {
+////                                    childNode.catchClauses.forEach {
+////                                        FunctionsRuleHandler.handleFunctionExceptionHandleRule(
+////                                            node,
+////                                            context,
+////                                            childNode.methodName
+////                                        )
+////                                    }
+////                                } else if (childNode is UMethod) {
+////                                    FunctionsRuleHandler.handleFunctionExceptionHandleRule(
+////                                        node,
+////                                        context,
+////                                        childNode.methodName
+////                                    )
+////                                }
+//                                return super.visitCallExpression(childNode)
+//                            }
+//                        })
+//                    }
                 }
-
             }
         }
     }
