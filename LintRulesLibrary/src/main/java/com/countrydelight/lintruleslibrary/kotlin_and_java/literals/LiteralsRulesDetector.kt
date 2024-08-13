@@ -17,7 +17,7 @@ class LiteralsRulesDetector : Detector(), Detector.UastScanner {
     override fun createUastHandler(context: JavaContext): UElementHandler {
         return object : UElementHandler() {
             override fun visitLiteralExpression(node: ULiteralExpression) {
-                if ((node.isNumberLiteral() || node.isString) && node.uastParent is UBinaryExpression) {
+                if (node.isNumberLiteral() && node.uastParent is UBinaryExpression && (node.uastParent as UBinaryExpression?)?.operatorIdentifier?.name != "=") {
                     LiteralRulesHandler.handleHardcodedLiteralRule(node, context)
                 }
             }

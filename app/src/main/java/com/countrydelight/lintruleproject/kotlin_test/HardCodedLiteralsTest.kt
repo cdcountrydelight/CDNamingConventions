@@ -10,7 +10,7 @@ class HardCodedLiteralsTest {
         a = getA()
         val res = a == 100
         if (a == 100) {
-
+            a = 200
         }
     }
 

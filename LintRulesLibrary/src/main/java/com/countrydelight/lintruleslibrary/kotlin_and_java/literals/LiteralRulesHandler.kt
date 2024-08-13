@@ -1,6 +1,7 @@
 package com.countrydelight.lintruleslibrary.kotlin_and_java.literals
 
 import com.android.tools.lint.detector.api.JavaContext
+import org.jetbrains.uast.UBinaryExpression
 import org.jetbrains.uast.UElement
 import org.jetbrains.uast.ULiteralExpression
 
@@ -17,7 +18,7 @@ object LiteralRulesHandler {
             LiteralIssueUtils.HardCodedLiteralIssue,
             node as UElement,
             context.getLocation(node as UElement),
-            LiteralIssueUtils.HARDCODED_LITERAL_ISSUE_TEXT
+            LiteralIssueUtils.HARDCODED_LITERAL_ISSUE_TEXT + "${(node.uastParent as UBinaryExpression).operatorIdentifier?.name}"
         )
     }
 }
