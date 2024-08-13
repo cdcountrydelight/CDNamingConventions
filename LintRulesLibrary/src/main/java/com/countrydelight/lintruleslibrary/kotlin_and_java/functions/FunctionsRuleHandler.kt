@@ -52,4 +52,26 @@ object FunctionsRuleHandler {
             FunctionsIssueUtils.FUNCTION_MAX_LENGTH_ISSUE_TEXT
         )
     }
+
+    /**
+     * Handles the rule for checking if a function properly manages exceptions thrown by another function.
+     *
+     * @param node The UMethod instance representing the function being analyzed.
+     * @param context The JavaContext providing access to the context of the Lint analysis, including the file and location.
+     * @param exceptionName The name of the exception that should be handled by the function.
+     * @param functionName The name of the function that potentially throws the exception.
+     */
+    fun handleFunctionThrowExceptionRule(
+        node: UMethod,
+        context: JavaContext,
+        exceptionName: String,
+        functionName: String
+    ) {
+        context.report(
+            FunctionsIssueUtils.FunctionExceptionHandlingIssue,
+            node,
+            context.getLocation(node as UElement),
+            "${node.name}() does not handles exception:- $exceptionName\n thrown by function:- ${functionName}()"
+        )
+    }
 }

@@ -48,4 +48,16 @@ object FunctionsIssueUtils {
         Severity.WARNING,
         Implementation(FunctionsRuleDetector::class.java, Scope.JAVA_FILE_SCOPE)
     )
+
+    const val FUNCTION_EXCEPTION_HANDLING_ISSUE_TEXT =
+        "Every Function must handle the exception either in try catch or must  throw exception"
+    val FunctionExceptionHandlingIssue = Issue.create(
+        "FunctionExceptionHandlingRule",
+        FUNCTION_EXCEPTION_HANDLING_ISSUE_TEXT,
+        FUNCTION_EXCEPTION_HANDLING_ISSUE_TEXT,
+        functionsRuleCategory,
+        6,
+        Severity.WARNING,
+        Implementation(FunctionsRuleDetector::class.java, Scope.JAVA_FILE_SCOPE)
+    )
 }

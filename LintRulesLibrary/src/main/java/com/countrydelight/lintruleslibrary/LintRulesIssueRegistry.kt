@@ -1,6 +1,7 @@
 package com.countrydelight.lintruleslibrary
 
 import com.android.tools.lint.client.api.IssueRegistry
+import com.android.tools.lint.client.api.Vendor
 import com.android.tools.lint.detector.api.CURRENT_API
 import com.android.tools.lint.detector.api.Issue
 import com.countrydelight.lintruleslibrary.kotlin_and_java.classes.ClassesNameIssueUtils
@@ -40,6 +41,7 @@ class LintRulesIssueRegistry : IssueRegistry() {
                 FunctionsIssueUtils.FunctionCommentIssue,
                 FunctionsIssueUtils.FindViewByIdIssue,
                 FunctionsIssueUtils.FunctionCommentIssue,
+                FunctionsIssueUtils.FunctionExceptionHandlingIssue,
                 //package
                 FileNameIssueUtils.PackageNameIssue,
                 //literals
@@ -56,5 +58,12 @@ class LintRulesIssueRegistry : IssueRegistry() {
     override val minApi: Int
         get() = 8
 
+    override val vendor: Vendor
+        get() = Vendor(
+            "Country Delight",
+            "Country Delight",
+            "https://countrydelight.in/contact-us",
+            "info@countrydelight.in"
+        )
 
 }
