@@ -6,6 +6,7 @@ import com.android.tools.lint.detector.api.Issue
 import com.countrydelight.lintruleslibrary.kotlin_and_java.classes.ClassesNameIssueUtils
 import com.countrydelight.lintruleslibrary.kotlin_and_java.files.FileNameIssueUtils
 import com.countrydelight.lintruleslibrary.kotlin_and_java.functions.FunctionsIssueUtils
+import com.countrydelight.lintruleslibrary.kotlin_and_java.literals.LiteralIssueUtils
 import com.countrydelight.lintruleslibrary.kotlin_and_java.variables.VariableNameIssueUtils
 import com.countrydelight.lintruleslibrary.xml.layout.LayoutIssueUtils
 
@@ -41,6 +42,8 @@ class LintRulesIssueRegistry : IssueRegistry() {
                 FunctionsIssueUtils.FunctionCommentIssue,
                 //package
                 FileNameIssueUtils.PackageNameIssue,
+                //literals
+                LiteralIssueUtils.HardCodedLiteralIssue,
                 // xml
                 // layout
                 LayoutIssueUtils.IdNameIssue,

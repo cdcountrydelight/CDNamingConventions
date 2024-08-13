@@ -5,10 +5,12 @@ import com.android.tools.lint.detector.api.Implementation
 import com.android.tools.lint.detector.api.Issue
 import com.android.tools.lint.detector.api.Scope
 import com.android.tools.lint.detector.api.Severity
+import com.countrydelight.lintruleslibrary.utils.CategoryPriorityHelper
 
 object VariableNameIssueUtils {
 
-    private val variableRuleCategory = Category(null, "Variable Rule", 98)
+    private val variableRuleCategory =
+        Category(null, "Variable Rule", CategoryPriorityHelper.VARIABLES_PRIORITY)
 
 
     const val STATE_FLOW_NAME_ISSUE_TEXT =

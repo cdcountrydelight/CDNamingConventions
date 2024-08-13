@@ -38,6 +38,12 @@ object FunctionsRuleHandler {
         )
     }
 
+    /**
+     * Reports an issue when a function exceeds the maximum allowed length.
+     *
+     * @param node The UMethod node representing the function that exceeds the maximum length.
+     * @param context The context of the lint check, used for reporting issues.
+     */
     fun handleFunctionMaxLengthRule(node: UMethod, context: JavaContext) {
         context.report(
             FunctionsIssueUtils.FunctionMaxLengthIssue,
