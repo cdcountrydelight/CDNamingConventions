@@ -4,6 +4,7 @@ import com.android.tools.lint.client.api.IssueRegistry
 import com.android.tools.lint.client.api.Vendor
 import com.android.tools.lint.detector.api.CURRENT_API
 import com.android.tools.lint.detector.api.Issue
+import com.countrydelight.lintruleslibrary.kotlin_and_java.blocks.LoopIssueUtils
 import com.countrydelight.lintruleslibrary.kotlin_and_java.classes.ClassesNameIssueUtils
 import com.countrydelight.lintruleslibrary.kotlin_and_java.files.FileNameIssueUtils
 import com.countrydelight.lintruleslibrary.kotlin_and_java.functions.FunctionsIssueUtils
@@ -46,6 +47,8 @@ class LintRulesIssueRegistry : IssueRegistry() {
                 FileNameIssueUtils.PackageNameIssue,
                 //literals
                 LiteralIssueUtils.HardCodedLiteralIssue,
+                //loops
+                LoopIssueUtils.NestedLoopIssue,
                 // xml
                 // layout
                 LayoutIssueUtils.IdNameIssue,
