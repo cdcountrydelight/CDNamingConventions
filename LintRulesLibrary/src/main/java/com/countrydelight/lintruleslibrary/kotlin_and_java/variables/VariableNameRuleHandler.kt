@@ -1,6 +1,7 @@
 package com.countrydelight.lintruleslibrary.kotlin_and_java.variables
 
 import com.android.tools.lint.detector.api.JavaContext
+import com.countrydelight.lintruleslibrary.utils.FunctionHelper
 import org.jetbrains.uast.UElement
 import org.jetbrains.uast.UVariable
 
@@ -104,6 +105,35 @@ object VariableNameRuleHandler {
             context.getLocation(node as UElement),
             "Global variable can be declared locally inside: $functionName()"
         )
+    }
+
+
+    fun handleProperVariableNameRule(node: UVariable, context: JavaContext) {
+        if (isValidName(node)) {
+            context.report(
+                VariableNameIssueUtils.ProperVariableNameIssue,
+                node as UElement,
+                context.getLocation(node as UElement),
+                VariableNameIssueUtils.PROPER_VARIABLE_NAME_ISSUE_TEXT
+            )
+        }
+    }
+
+    fun handleBooleanVariableNameRule(node: UVariable, context: JavaContext) {
+        if (isValidName(node)
+            && FunctionHelper.getValidStartingNamesOfBooleanVariablesAndFunctions()
+                .none { node.name?.startsWith(it) == true }
+        ) {
+            context.report(
+                VariableNameIssueUtils.BooleanVariableNameIssue,
+                node as UElement,
+                context.getLocation(node as UElement),
+                "Boolean variables names must start with any of the following predefined words: ${
+                    FunctionHelper.getValidStartingNamesOfBooleanVariablesAndFunctions()
+                        .joinToString(", ")
+                }."
+            )
+        }
     }
 
 
