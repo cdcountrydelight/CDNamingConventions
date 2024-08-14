@@ -5,10 +5,12 @@ import com.android.tools.lint.detector.api.Implementation
 import com.android.tools.lint.detector.api.Issue
 import com.android.tools.lint.detector.api.Scope
 import com.android.tools.lint.detector.api.Severity
+import com.countrydelight.lintruleslibrary.utils.CategoryPriorityHelper
 
 object ClassesNameIssueUtils {
 
-    private val classRuleCategory = Category(null, "Class Rule", 100)
+    private val classRuleCategory =
+        Category(null, "Class Rule", CategoryPriorityHelper.CLASS_PRIORITY)
 
     const val INTERFACE_NAME_ISSUE_TEXT = "Interface name must start with I"
     val InterfaceNameIssue = Issue.create(

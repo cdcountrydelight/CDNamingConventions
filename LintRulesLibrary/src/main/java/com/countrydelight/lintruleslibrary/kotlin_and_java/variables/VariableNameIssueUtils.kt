@@ -5,10 +5,12 @@ import com.android.tools.lint.detector.api.Implementation
 import com.android.tools.lint.detector.api.Issue
 import com.android.tools.lint.detector.api.Scope
 import com.android.tools.lint.detector.api.Severity
+import com.countrydelight.lintruleslibrary.utils.CategoryPriorityHelper
 
 object VariableNameIssueUtils {
 
-    private val variableRuleCategory = Category(null, "Variable Rule", 98)
+    private val variableRuleCategory =
+        Category(null, "Variable Rule", CategoryPriorityHelper.VARIABLES_PRIORITY)
 
 
     const val STATE_FLOW_NAME_ISSUE_TEXT =
@@ -72,6 +74,31 @@ object VariableNameIssueUtils {
         id = "GlobalVariableRule",
         briefDescription = GLOBAL_VARIABLE_ISSUE_TEXT,
         explanation = GLOBAL_VARIABLE_ISSUE_TEXT,
+        category = variableRuleCategory,
+        priority = 6,
+        severity = Severity.WARNING,
+        implementation = Implementation(VariableNameRuleDetector::class.java, Scope.JAVA_FILE_SCOPE)
+    )
+
+
+    const val PROPER_VARIABLE_NAME_ISSUE_TEXT =
+        "Variable name must adhere the actual use case of the variable,Please use some meaning full variable name"
+    val ProperVariableNameIssue = Issue.create(
+        id = "ProperVariableNameRule",
+        briefDescription = PROPER_VARIABLE_NAME_ISSUE_TEXT,
+        explanation = PROPER_VARIABLE_NAME_ISSUE_TEXT,
+        category = variableRuleCategory,
+        priority = 6,
+        severity = Severity.WARNING,
+        implementation = Implementation(VariableNameRuleDetector::class.java, Scope.JAVA_FILE_SCOPE)
+    )
+
+    private const val BOOLEAN_VARIABLE_NAME_ISSUE_TEXT =
+        "Boolean Variables must start with predefined words"
+    val BooleanVariableNameIssue = Issue.create(
+        id = "BooleanVariableNameRule",
+        briefDescription = BOOLEAN_VARIABLE_NAME_ISSUE_TEXT,
+        explanation = BOOLEAN_VARIABLE_NAME_ISSUE_TEXT,
         category = variableRuleCategory,
         priority = 6,
         severity = Severity.WARNING,

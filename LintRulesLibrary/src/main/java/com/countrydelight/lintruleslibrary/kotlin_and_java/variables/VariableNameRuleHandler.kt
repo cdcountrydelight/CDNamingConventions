@@ -1,6 +1,7 @@
 package com.countrydelight.lintruleslibrary.kotlin_and_java.variables
 
 import com.android.tools.lint.detector.api.JavaContext
+import com.countrydelight.lintruleslibrary.utils.FunctionHelper
 import org.jetbrains.uast.UElement
 import org.jetbrains.uast.UVariable
 
@@ -104,6 +105,47 @@ object VariableNameRuleHandler {
             context.getLocation(node as UElement),
             "Global variable can be declared locally inside: $functionName()"
         )
+    }
+
+
+    /**
+     * Handles the rule for ensuring proper naming conventions for variables.
+     *
+     * @param node The variable (UVariable) being analyzed by the Lint rule.
+     * @param context The context in which the Lint check is being run, used to report issues.
+     */
+    fun handleProperVariableNameRule(node: UVariable, context: JavaContext) {
+        if (isValidName(node)) {
+            context.report(
+                VariableNameIssueUtils.ProperVariableNameIssue,
+                node as UElement,
+                context.getLocation(node as UElement),
+                VariableNameIssueUtils.PROPER_VARIABLE_NAME_ISSUE_TEXT
+            )
+        }
+    }
+
+    /**
+     * Handles the rule for ensuring proper naming conventions for Boolean variables.
+     *
+     * @param node The variable (UVariable) being analyzed by the Lint rule.
+     * @param context The context in which the Lint check is being run, used to report issues.
+     */
+    fun handleBooleanVariableNameRule(node: UVariable, context: JavaContext) {
+        if (isValidName(node)
+            && FunctionHelper.getValidStartingNamesOfBooleanVariablesAndFunctions()
+                .none { node.name?.startsWith(it) == true }
+        ) {
+            context.report(
+                VariableNameIssueUtils.BooleanVariableNameIssue,
+                node as UElement,
+                context.getLocation(node as UElement),
+                "Boolean variables names must start with any of the following predefined words: ${
+                    FunctionHelper.getValidStartingNamesOfBooleanVariablesAndFunctions()
+                        .joinToString(", ")
+                }."
+            )
+        }
     }
 
 

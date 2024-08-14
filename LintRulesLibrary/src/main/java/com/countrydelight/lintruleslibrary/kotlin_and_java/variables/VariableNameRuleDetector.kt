@@ -3,6 +3,7 @@ package com.countrydelight.lintruleslibrary.kotlin_and_java.variables
 import com.android.tools.lint.client.api.UElementHandler
 import com.android.tools.lint.detector.api.Detector
 import com.android.tools.lint.detector.api.JavaContext
+import com.intellij.psi.PsiTypes
 import org.jetbrains.uast.UElement
 import org.jetbrains.uast.UField
 import org.jetbrains.uast.UFile
@@ -45,6 +46,12 @@ class VariableNameRuleDetector : Detector(), Detector.UastScanner {
                     ) {
                         VariableNameRuleHandler.handleLiveDataNameRule(node, context)
                     }
+                }
+                if (node.name?.length == 1) {
+                    VariableNameRuleHandler.handleProperVariableNameRule(node, context)
+                }
+                if (node.type == PsiTypes.booleanType()) {
+                    VariableNameRuleHandler.handleBooleanVariableNameRule(node, context)
                 }
                 if (node is UField) {
                     val references = findReferencesOfVariable(context.uastFile, node)

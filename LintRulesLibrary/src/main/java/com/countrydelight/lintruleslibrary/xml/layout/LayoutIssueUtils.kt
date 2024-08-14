@@ -5,10 +5,12 @@ import com.android.tools.lint.detector.api.Implementation
 import com.android.tools.lint.detector.api.Issue
 import com.android.tools.lint.detector.api.Scope
 import com.android.tools.lint.detector.api.Severity
+import com.countrydelight.lintruleslibrary.utils.CategoryPriorityHelper
 
 object LayoutIssueUtils {
 
-    private val layoutRuleCategory = Category(null, "Layout Rule", 102)
+    private val layoutRuleCategory =
+        Category(null, "Layout Rule", CategoryPriorityHelper.LAYOUT_PRIORITY)
 
 
     private const val ID_NAME_ISSUE_TEXT =
