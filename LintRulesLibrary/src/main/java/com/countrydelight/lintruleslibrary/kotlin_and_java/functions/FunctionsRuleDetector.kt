@@ -33,6 +33,7 @@ class FunctionsRuleDetector : Detector(), Detector.UastScanner {
                     if (notHasComments
                         && node.text?.contains("override") == false
                         && !node.annotations.any { it.text?.contains("Override") == true }
+                        && node.annotations.none { it.qualifiedName?.contains("androidx.room") == true }
                     ) {
                         FunctionsRuleHandler.handleFunctionCommentRule(node, context)
                     }
@@ -41,6 +42,16 @@ class FunctionsRuleDetector : Detector(), Detector.UastScanner {
                     }
                     if (node.returnType == PsiTypes.booleanType()) {
                         FunctionsRuleHandler.handleBooleanFunctionNameRule(node, context)
+                    }
+                    if (node.annotations.any { it.text?.contains("OptIn") == true }) {
+                        FunctionsRuleHandler.handleExperimentalAnnotationRule(node, context)
+                    }
+                    if (node.annotations.any {
+                            it.text?.contains("@Insert") == true && it.text?.contains(
+                                "REPLACE"
+                            ) == true
+                        }) {
+                        FunctionsRuleHandler.handleUseUpsertRuleInPlaceOfInsert(node, context)
                     }
                     val startLine = context.getLocation(node).start?.line
                     val endLine = context.getLocation(node).end?.line

@@ -73,4 +73,30 @@ object FunctionsIssueUtils {
         severity = Severity.WARNING,
         implementation = Implementation(FunctionsRuleDetector::class.java, Scope.JAVA_FILE_SCOPE)
     )
+
+    const val EXPERIMENTAL_FUNCTION_ISSUE_TEXT =
+        "Use of Experimental api is discouraged as it may leads to potential issues"
+    val ExperimentalFunctionIssue = Issue.create(
+        "ExperimentalApiRule",
+        EXPERIMENTAL_FUNCTION_ISSUE_TEXT,
+        EXPERIMENTAL_FUNCTION_ISSUE_TEXT,
+        functionsRuleCategory,
+        6,
+        Severity.WARNING,
+        Implementation(FunctionsRuleDetector::class.java, Scope.JAVA_FILE_SCOPE)
+
+    )
+
+    const val UPSERT_ISSUE_TEXT =
+        "Use @Upsert instead of @Insert(onConflict = OnConflictStrategy.REPLACE) for better performance"
+    val UseUpsertIssue = Issue.create(
+        "UpsertRule",
+        UPSERT_ISSUE_TEXT,
+        UPSERT_ISSUE_TEXT,
+        functionsRuleCategory,
+        6,
+        Severity.WARNING,
+        Implementation(FunctionsRuleDetector::class.java, Scope.JAVA_FILE_SCOPE)
+
+    )
 }
