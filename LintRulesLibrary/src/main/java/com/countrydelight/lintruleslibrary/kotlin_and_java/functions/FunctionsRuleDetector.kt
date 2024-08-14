@@ -3,6 +3,7 @@ package com.countrydelight.lintruleslibrary.kotlin_and_java.functions
 import com.android.tools.lint.client.api.UElementHandler
 import com.android.tools.lint.detector.api.Detector
 import com.android.tools.lint.detector.api.JavaContext
+import com.intellij.psi.PsiTypes
 import org.jetbrains.uast.UCallExpression
 import org.jetbrains.uast.UClass
 import org.jetbrains.uast.UElement
@@ -37,6 +38,9 @@ class FunctionsRuleDetector : Detector(), Detector.UastScanner {
                     }
                     if (node.text?.contains("findViewById") == true) {
                         FunctionsRuleHandler.handleFindViewByIdRule(node, context)
+                    }
+                    if (node.returnType == PsiTypes.booleanType()) {
+                        FunctionsRuleHandler.handleBooleanFunctionNameRule(node, context)
                     }
                     val startLine = context.getLocation(node).start?.line
                     val endLine = context.getLocation(node).end?.line

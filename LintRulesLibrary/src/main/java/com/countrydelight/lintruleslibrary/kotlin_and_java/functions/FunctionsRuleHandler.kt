@@ -1,6 +1,7 @@
 package com.countrydelight.lintruleslibrary.kotlin_and_java.functions
 
 import com.android.tools.lint.detector.api.JavaContext
+import com.countrydelight.lintruleslibrary.utils.FunctionHelper
 import org.jetbrains.uast.UElement
 import org.jetbrains.uast.UMethod
 
@@ -73,5 +74,27 @@ object FunctionsRuleHandler {
             context.getLocation(node as UElement),
             "${node.name}() does not handles exception:- $exceptionName\n thrown by function:- ${functionName}()"
         )
+    }
+
+
+    /**
+     * Handles the rule for checking the naming convention of functions that return a Boolean value.
+     * @param node The method (UMethod) being analyzed by the Lint rule.
+     * @param context The context in which the Lint check is being run, used to report issues.
+     */
+    fun handleBooleanFunctionNameRule(node: UMethod, context: JavaContext) {
+        if (FunctionHelper.getValidStartingNamesOfBooleanVariablesAndFunctions()
+                .none { node.name.startsWith(it) }
+        ) {
+            context.report(
+                FunctionsIssueUtils.BooleanFunctionNameIssue,
+                node as UElement,
+                context.getLocation(node as UElement),
+                "Functions of return type Boolean must start with any of the following predefined words: ${
+                    FunctionHelper.getValidStartingNamesOfBooleanVariablesAndFunctions()
+                        .joinToString(", ")
+                }."
+            )
+        }
     }
 }

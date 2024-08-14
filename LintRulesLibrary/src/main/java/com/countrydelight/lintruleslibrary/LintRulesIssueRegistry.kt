@@ -45,6 +45,7 @@ class LintRulesIssueRegistry : IssueRegistry() {
                 FunctionsIssueUtils.FindViewByIdIssue,
                 FunctionsIssueUtils.FunctionCommentIssue,
                 FunctionsIssueUtils.FunctionExceptionHandlingIssue,
+                FunctionsIssueUtils.BooleanFunctionNameIssue,
                 //package
                 FileNameIssueUtils.PackageNameIssue,
                 //literals

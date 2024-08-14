@@ -108,6 +108,12 @@ object VariableNameRuleHandler {
     }
 
 
+    /**
+     * Handles the rule for ensuring proper naming conventions for variables.
+     *
+     * @param node The variable (UVariable) being analyzed by the Lint rule.
+     * @param context The context in which the Lint check is being run, used to report issues.
+     */
     fun handleProperVariableNameRule(node: UVariable, context: JavaContext) {
         if (isValidName(node)) {
             context.report(
@@ -119,6 +125,12 @@ object VariableNameRuleHandler {
         }
     }
 
+    /**
+     * Handles the rule for ensuring proper naming conventions for Boolean variables.
+     *
+     * @param node The variable (UVariable) being analyzed by the Lint rule.
+     * @param context The context in which the Lint check is being run, used to report issues.
+     */
     fun handleBooleanVariableNameRule(node: UVariable, context: JavaContext) {
         if (isValidName(node)
             && FunctionHelper.getValidStartingNamesOfBooleanVariablesAndFunctions()

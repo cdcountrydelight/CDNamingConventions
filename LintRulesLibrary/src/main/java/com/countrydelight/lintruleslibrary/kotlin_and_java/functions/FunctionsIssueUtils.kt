@@ -49,7 +49,7 @@ object FunctionsIssueUtils {
         Implementation(FunctionsRuleDetector::class.java, Scope.JAVA_FILE_SCOPE)
     )
 
-    const val FUNCTION_EXCEPTION_HANDLING_ISSUE_TEXT =
+    private const val FUNCTION_EXCEPTION_HANDLING_ISSUE_TEXT =
         "Every Function must handle the exception either in try catch or must  throw exception"
     val FunctionExceptionHandlingIssue = Issue.create(
         "FunctionExceptionHandlingRule",
@@ -59,5 +59,18 @@ object FunctionsIssueUtils {
         6,
         Severity.WARNING,
         Implementation(FunctionsRuleDetector::class.java, Scope.JAVA_FILE_SCOPE)
+
+    )
+
+    private const val BOOLEAN_FUNCTION_NAME_ISSUE_TEXT =
+        "Functions of return type Boolean must start with predefined words"
+    val BooleanFunctionNameIssue = Issue.create(
+        id = "BooleanFunctionNameRule",
+        briefDescription = BOOLEAN_FUNCTION_NAME_ISSUE_TEXT,
+        explanation = BOOLEAN_FUNCTION_NAME_ISSUE_TEXT,
+        category = functionsRuleCategory,
+        priority = 6,
+        severity = Severity.WARNING,
+        implementation = Implementation(FunctionsRuleDetector::class.java, Scope.JAVA_FILE_SCOPE)
     )
 }
