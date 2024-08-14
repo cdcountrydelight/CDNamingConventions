@@ -59,7 +59,7 @@ CDNamingConventions enforces the following coding patterns:
   
   - Use **`DataBinding/ViewBinding`** instead of findVIewById().
 
-  - Function length should be at max 100 lines, try to break larger functions into smaller sub functions.
+  - Function length should be at max **`100`** lines, try to break larger functions into smaller sub functions.
 
   - A Function must properly handle exception throwing functions either in try catch or must specify the exception in their method signature.
 
@@ -67,11 +67,11 @@ CDNamingConventions enforces the following coding patterns:
 
   - Global variable used inside single functions must be declared as local variable inside function.
 
-  - Use @Upsert instead of @Insert(onConflict = OnConflictStrategy.REPLACE) for better performance.
+  - Use **`@Upsert`** instead of **`@Insert(onConflict = OnConflictStrategy.REPLACE)`** for better performance.
 
   - Variables names must adhere the actual use case.
 
-  - Boolean variables/Function must start with any of the following predefined words: **`is, has, should, can, whether, was, need, are`**
+  - Boolean variables/Function must start with any of the following predefined words: **`is`**, **`has`**, **`should`**, **`can`**, **`whether`**, **`was`**, **`need`**, **`are`**
 
   - Use of Experimental compose api's is discouraged.
 
