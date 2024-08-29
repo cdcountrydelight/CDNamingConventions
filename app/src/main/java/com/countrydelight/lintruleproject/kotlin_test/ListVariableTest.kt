@@ -35,4 +35,9 @@ object ListVariableTestObjectClass {
     var wrongPublicListVariable = arrayListOf<String>()
 
     var rightPublicList = arrayListOf<String>()
+
+
+    fun MutableList<String>.sortByName() {
+        this.sortBy { it }
+    }
 }

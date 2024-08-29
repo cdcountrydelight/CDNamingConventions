@@ -23,7 +23,7 @@ afterEvaluate {
                 }
                 groupId = "com.github.cdcountrydelight"
                 artifactId = "CDNamingConventions"
-                version = "1.1.0"
+                version = "1.1.1"
                 from(components["java"])
             }
         }

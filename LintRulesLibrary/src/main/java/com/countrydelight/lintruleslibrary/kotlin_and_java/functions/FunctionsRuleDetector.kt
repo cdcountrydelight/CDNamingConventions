@@ -43,9 +43,6 @@ class FunctionsRuleDetector : Detector(), Detector.UastScanner {
                     if (node.returnType == PsiTypes.booleanType()) {
                         FunctionsRuleHandler.handleBooleanFunctionNameRule(node, context)
                     }
-                    if (node.annotations.any { it.text?.contains("OptIn") == true }) {
-                        FunctionsRuleHandler.handleExperimentalAnnotationRule(node, context)
-                    }
                     if (node.annotations.any {
                             it.text?.contains("@Insert") == true && it.text?.contains(
                                 "REPLACE"

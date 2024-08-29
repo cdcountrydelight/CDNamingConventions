@@ -46,7 +46,6 @@ class LintRulesIssueRegistry : IssueRegistry() {
                 FunctionsIssueUtils.FunctionCommentIssue,
                 FunctionsIssueUtils.FunctionExceptionHandlingIssue,
                 FunctionsIssueUtils.BooleanFunctionNameIssue,
-                FunctionsIssueUtils.ExperimentalFunctionIssue,
                 FunctionsIssueUtils.UseUpsertIssue,
                 //package
                 FileNameIssueUtils.PackageNameIssue,

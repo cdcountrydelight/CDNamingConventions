@@ -1,7 +1,6 @@
 package com.countrydelight.lintruleslibrary.kotlin_and_java.functions
 
 import com.android.tools.lint.detector.api.JavaContext
-import com.countrydelight.lintruleslibrary.kotlin_and_java.functions.FunctionsIssueUtils.EXPERIMENTAL_FUNCTION_ISSUE_TEXT
 import com.countrydelight.lintruleslibrary.kotlin_and_java.functions.FunctionsIssueUtils.UPSERT_ISSUE_TEXT
 import com.countrydelight.lintruleslibrary.utils.FunctionHelper
 import org.jetbrains.uast.UElement
@@ -98,21 +97,6 @@ object FunctionsRuleHandler {
                 }."
             )
         }
-    }
-
-    /**
-     * Handles the rule for functions marked with experimental annotations.
-     *
-     * @param node The method (UMethod) being analyzed by the Lint rule.
-     * @param context The context in which the Lint check is being run, used to report issues.
-     */
-    fun handleExperimentalAnnotationRule(node: UMethod, context: JavaContext) {
-        context.report(
-            FunctionsIssueUtils.ExperimentalFunctionIssue,
-            node,
-            context.getLocation(node as UElement),
-            EXPERIMENTAL_FUNCTION_ISSUE_TEXT
-        )
     }
 
 

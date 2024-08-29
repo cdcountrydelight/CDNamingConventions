@@ -158,6 +158,6 @@ object VariableNameRuleHandler {
      * @return `true` if the variable node's name is not null and does not contain "<set-?>"; `false` otherwise.
      */
     private fun isValidName(node: UVariable): Boolean {
-        return node.name != null && node.name?.contains("<set-?>") == false
+        return node.name != null && node.name?.contains("<set-?>") == false && node.isPhysical
     }
 }
