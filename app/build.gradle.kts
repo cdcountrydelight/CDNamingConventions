@@ -76,6 +76,10 @@ dependencies {
     annotationProcessor(libs.androidx.room.compiler)
     ksp(libs.androidx.room.compiler)
 
+    // google api client
+    implementation(libs.play.services.auth)
+    implementation(libs.play.services.auth.api.phone)
+
     //test implementation
     testImplementation(libs.junit)
 

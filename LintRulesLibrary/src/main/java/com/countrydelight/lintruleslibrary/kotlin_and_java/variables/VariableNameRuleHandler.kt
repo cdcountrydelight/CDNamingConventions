@@ -12,7 +12,7 @@ object VariableNameRuleHandler {
      * @param context The JavaContext providing the inspection context.
      */
     fun handleStateFlowNameRule(node: UVariable, context: JavaContext) {
-        if (isValidName(node) && node.name?.endsWith("StateFlow") == false) {
+        if (isValidName(node) && getUpdatedName(node)?.endsWith("StateFlow") == false) {
             context.report(
                 VariableNameIssueUtils.StateFlowNameIssue,
                 node as UElement,
@@ -28,7 +28,7 @@ object VariableNameRuleHandler {
      * @param context The JavaContext providing the inspection context.
      */
     fun handleStateNameRule(node: UVariable, context: JavaContext) {
-        if (isValidName(node) && node.name?.endsWith("State") == false) {
+        if (isValidName(node) && getUpdatedName(node)?.endsWith("State") == false) {
             context.report(
                 VariableNameIssueUtils.StateNameIssue,
                 node as UElement,
@@ -44,7 +44,7 @@ object VariableNameRuleHandler {
      * @param context The JavaContext providing the inspection context.
      */
     fun handleMapNameRule(node: UVariable, context: JavaContext) {
-        if (isValidName(node) && node.name?.endsWith("Map") == false) {
+        if (isValidName(node) && getUpdatedName(node)?.endsWith("Map") == false) {
             context.report(
                 VariableNameIssueUtils.MapNameIssue,
                 node as UElement,
@@ -62,7 +62,7 @@ object VariableNameRuleHandler {
      * @param context the Java context
      */
     fun handleLiveDataNameRule(node: UVariable, context: JavaContext) {
-        if (isValidName(node) && node.name?.endsWith("LiveData") == false) {
+        if (isValidName(node) && getUpdatedName(node)?.endsWith("LiveData") == false) {
             context.report(
                 VariableNameIssueUtils.MapNameIssue,
                 node as UElement,
@@ -79,7 +79,7 @@ object VariableNameRuleHandler {
      * @param context The JavaContext providing the inspection context.
      */
     fun handleListNameRule(node: UVariable, context: JavaContext) {
-        if (isValidName(node) && node.name?.endsWith("List") == false) {
+        if (isValidName(node) && getUpdatedName(node)?.endsWith("List") == false) {
             context.report(
                 VariableNameIssueUtils.ListNameIssue,
                 node as UElement,
@@ -159,5 +159,10 @@ object VariableNameRuleHandler {
      */
     private fun isValidName(node: UVariable): Boolean {
         return node.name != null && node.name?.contains("<set-?>") == false && node.isPhysical
+    }
+
+
+    private fun getUpdatedName(node: UVariable): String? {
+        return node.name?.substringBefore("$")
     }
 }
