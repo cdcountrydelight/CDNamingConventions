@@ -43,7 +43,6 @@ class LintRulesIssueRegistry : IssueRegistry() {
                 //functions
                 FunctionsIssueUtils.FunctionCommentIssue,
                 FunctionsIssueUtils.FindViewByIdIssue,
-                FunctionsIssueUtils.FunctionCommentIssue,
                 FunctionsIssueUtils.FunctionExceptionHandlingIssue,
                 FunctionsIssueUtils.BooleanFunctionNameIssue,
                 FunctionsIssueUtils.UseUpsertIssue,

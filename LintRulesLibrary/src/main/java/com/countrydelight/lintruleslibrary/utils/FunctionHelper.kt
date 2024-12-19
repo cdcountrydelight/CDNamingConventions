@@ -8,6 +8,6 @@ object FunctionHelper {
      * @return A list of valid prefixes for Boolean variables and function names.
      */
     fun getValidStartingNamesOfBooleanVariablesAndFunctions(): List<String> {
-        return listOf("is", "has", "should", "can", "whether", "was", "need", "are")
+        return listOf("is", "has", "should", "can", "whether", "was", "need", "are","toBoolean")
     }
 }

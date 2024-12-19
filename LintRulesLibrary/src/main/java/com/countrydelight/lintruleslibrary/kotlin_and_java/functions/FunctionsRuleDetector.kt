@@ -71,7 +71,7 @@ class FunctionsRuleDetector : Detector(), Detector.UastScanner {
                                                 FunctionsRuleHandler.handleFunctionThrowExceptionRule(
                                                     node,
                                                     context,
-                                                    childNodeParent.catchClauses.joinToString { it.parameters.joinToString { it.type.canonicalText } },
+                                                    it.canonicalText,
                                                     childFunction.name
                                                 )
                                             }

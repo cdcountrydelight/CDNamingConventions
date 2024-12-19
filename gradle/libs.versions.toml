@@ -6,12 +6,15 @@ composeBom = "2024.06.00"
 constraintlayout = "2.1.4"
 coreKtx = "1.13.1"
 espressoCore = "3.6.1"
+googleApiClientAndroid = "2.7.1"
 junit = "4.13.2"
 junitVersion = "1.2.1"
 kotlin = "1.9.0"
 lifecycleRuntimeKtx = "2.8.4"
 lintApi = "31.5.1"
 material = "1.12.0"
+playServicesAuth = "20.7.0"
+playServicesAuthApiPhone = "18.1.0"
 roomCompiler = "2.6.1"
 roomRuntime = "2.6.1"
 workRuntime = "2.9.0"
@@ -43,6 +46,8 @@ androidx-work-runtime-ktx = { module = "androidx.work:work-runtime-ktx", version
 junit = { module = "junit:junit", version.ref = "junit" }
 lint-api = { module = "com.android.tools.lint:lint-api", version.ref = "lintApi" }
 material = { module = "com.google.android.material:material", version.ref = "material" }
+play-services-auth = { module = "com.google.android.gms:play-services-auth", version.ref = "playServicesAuth" }
+play-services-auth-api-phone = { module = "com.google.android.gms:play-services-auth-api-phone", version.ref = "playServicesAuthApiPhone" }
 
 
 [plugins]

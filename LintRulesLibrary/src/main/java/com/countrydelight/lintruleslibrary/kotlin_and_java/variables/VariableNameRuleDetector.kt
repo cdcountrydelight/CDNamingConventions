@@ -72,7 +72,6 @@ class VariableNameRuleDetector : Detector(), Detector.UastScanner {
                                 methodName
                             )
                         }
-
                     }
                 }
             }
