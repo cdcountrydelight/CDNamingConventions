@@ -132,8 +132,7 @@ object VariableNameRuleHandler {
      * @param context The context in which the Lint check is being run, used to report issues.
      */
     fun handleBooleanVariableNameRule(node: UVariable, context: JavaContext) {
-        if (isValidName(node)
-            && FunctionHelper.getValidStartingNamesOfBooleanVariablesAndFunctions()
+        if (isValidName(node) && FunctionHelper.getValidStartingNamesOfBooleanVariablesAndFunctions()
                 .none { node.name?.startsWith(it) == true }
         ) {
             context.report(
