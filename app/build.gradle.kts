@@ -83,8 +83,8 @@ dependencies {
     implementation(libs.play.services.auth.api.phone)
 
     // dagger - hilt
-    implementation("com.google.dagger:hilt-android:2.51.1")
-    kapt("com.google.dagger:hilt-android-compiler:2.51.1")
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.android.compiler)
 
     //test implementation
     testImplementation(libs.junit)

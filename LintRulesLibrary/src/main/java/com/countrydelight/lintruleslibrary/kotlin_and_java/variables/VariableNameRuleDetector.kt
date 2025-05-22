@@ -4,10 +4,12 @@ import com.android.tools.lint.client.api.UElementHandler
 import com.android.tools.lint.detector.api.Detector
 import com.android.tools.lint.detector.api.JavaContext
 import com.intellij.psi.PsiTypes
+import org.jetbrains.kotlin.psi.psiUtil.parents
 import org.jetbrains.uast.UElement
 import org.jetbrains.uast.UField
 import org.jetbrains.uast.UFile
 import org.jetbrains.uast.UMethod
+import org.jetbrains.uast.UParameter
 import org.jetbrains.uast.UReferenceExpression
 import org.jetbrains.uast.USimpleNameReferenceExpression
 import org.jetbrains.uast.UVariable
@@ -52,6 +54,8 @@ class VariableNameRuleDetector : Detector(), Detector.UastScanner {
                 }
                 if (node.type == PsiTypes.booleanType()) {
                     VariableNameRuleHandler.handleBooleanVariableNameRule(node, context)
+                }
+                if (node is UParameter) {
                 }
                 if (node is UField) {
                     if (node.type.canonicalText.startsWith("kotlinx.coroutines.flow.MutableStateFlow")

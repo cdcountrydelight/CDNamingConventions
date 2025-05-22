@@ -1,8 +1,14 @@
 package com.countrydelight.lintruleproject.kotlin_test
 
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
+import javax.inject.Inject
+
+
+class Test @Inject constructor(val parameter:String) {
+
+    fun parameterTest(){
+        parameter
+    }
+}
 
 class ListVariableTest {
 
@@ -25,9 +31,6 @@ class ListVariableTest {
     var nonNullableList = nullableList ?: arrayListOf()
 
     val rightPublicList: List<String>? = null
-
-    var selectedOption: Int? by mutableStateOf(null)
-
 
     // checks list rule inside function
     fun checkListRule() {

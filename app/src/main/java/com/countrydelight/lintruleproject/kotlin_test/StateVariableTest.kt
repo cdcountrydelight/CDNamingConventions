@@ -11,4 +11,7 @@ class StateVariableTest {
     var rightState = mutableStateOf("")
 
     var rightByDeligateState by mutableStateOf("")
+
+    var selectedOption: Int? by mutableStateOf(null)
+
 }

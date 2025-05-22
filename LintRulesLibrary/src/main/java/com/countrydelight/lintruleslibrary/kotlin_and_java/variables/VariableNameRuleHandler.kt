@@ -33,7 +33,7 @@ object VariableNameRuleHandler {
                 VariableNameIssueUtils.StateNameIssue,
                 node as UElement,
                 context.getLocation(node as UElement),
-                VariableNameIssueUtils.STATE_NAME_ISSUE_TEXT + node.name + node.text + node.type
+                VariableNameIssueUtils.STATE_NAME_ISSUE_TEXT
             )
         }
     }
@@ -107,7 +107,6 @@ object VariableNameRuleHandler {
         )
     }
 
-
     /**
      * Handles the rule for ensuring proper naming conventions for variables.
      *
@@ -157,9 +156,10 @@ object VariableNameRuleHandler {
      * @return `true` if the variable node's name is not null and does not contain "<set-?>"; `false` otherwise.
      */
     private fun isValidName(node: UVariable): Boolean {
-        return node.name != null && node.name?.contains("<set-?>") == false && node.isPhysical && node.name?.contains(
-            "\$delegate"
-        ) == false
+        return node.name != null
+                && node.name?.contains("<set-?>") == false
+                && node.isPhysical
+//                && node.name?.contains("\$delegate") == false
     }
 
 
