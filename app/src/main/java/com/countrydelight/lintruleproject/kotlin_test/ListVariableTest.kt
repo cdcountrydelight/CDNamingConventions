@@ -1,5 +1,9 @@
 package com.countrydelight.lintruleproject.kotlin_test
 
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
+
 class ListVariableTest {
 
     val wrongArrayListVariable = arrayListOf<String>()
@@ -16,7 +20,13 @@ class ListVariableTest {
 
     lateinit var wrongLateInit: List<String>
 
+    var nullableList: ArrayList<Int>? = arrayListOf()
+
+    var nonNullableList = nullableList ?: arrayListOf()
+
     val rightPublicList: List<String>? = null
+
+    var selectedOption: Int? by mutableStateOf(null)
 
 
     // checks list rule inside function

@@ -13,4 +13,12 @@ class BooleanFunctionNameTest {
     }
 
 
+    var whetherPackagerHasScanned: Boolean
+        get() {
+            return true
+        }
+        set(value) {
+
+        }
+
 }

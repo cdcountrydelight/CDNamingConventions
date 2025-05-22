@@ -1,6 +1,13 @@
 package com.countrydelight.lintruleproject.kotlin_test.variable_scope_test
 
-class WrongGlobalVariableScopeTest {
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import javax.inject.Inject
+
+
+class WrongGlobalVariableScopeTest @Inject constructor(private val hello: String) {
+
+    private val hiThereStateFlow: StateFlow<String> = MutableStateFlow("")
 
     private var wrongGlobalVariableScope = "wrong_scope"
 
@@ -15,6 +22,9 @@ class WrongGlobalVariableScopeTest {
             UpdateTypeEnum.FIREBASE -> TODO()
             UpdateTypeEnum.ADMIN -> TODO()
         }
+    }
+
+    fun hi() {
     }
 }
 

@@ -54,6 +54,10 @@ class VariableNameRuleDetector : Detector(), Detector.UastScanner {
                     VariableNameRuleHandler.handleBooleanVariableNameRule(node, context)
                 }
                 if (node is UField) {
+                    if (node.type.canonicalText.startsWith("kotlinx.coroutines.flow.MutableStateFlow")
+                        || variableType.canonicalText.startsWith("androidx.lifecycle.MutableLiveData")
+                        || node.annotations.any { it.text?.contains("Inject") == true }
+                    ) return
                     val references = findReferencesOfVariable(context.uastFile, node)
                     if (references.isNotEmpty()) {
                         val containingMethods =
