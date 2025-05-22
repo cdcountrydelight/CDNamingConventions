@@ -159,7 +159,7 @@ object VariableNameRuleHandler {
         return node.name != null
                 && node.name?.contains("<set-?>") == false
                 && node.isPhysical
-//                && node.name?.contains("\$delegate") == false
+                && node.name?.contains("\$delegate") == false
     }
 
 
