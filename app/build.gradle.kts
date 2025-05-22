@@ -2,6 +2,8 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.google.devtools.ksp)
+    id("kotlin-kapt")
+    id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -80,6 +82,10 @@ dependencies {
     implementation(libs.play.services.auth)
     implementation(libs.play.services.auth.api.phone)
 
+    // dagger - hilt
+    implementation("com.google.dagger:hilt-android:2.51.1")
+    kapt("com.google.dagger:hilt-android-compiler:2.51.1")
+
     //test implementation
     testImplementation(libs.junit)
 
@@ -96,4 +102,8 @@ dependencies {
     //lint
     lintChecks(project(":LintRulesLibrary"))
 
+}
+
+kapt {
+    correctErrorTypes = true
 }
